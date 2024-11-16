@@ -15,7 +15,7 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 	public User? GetByName(string name) => set.FirstOrDefault(u => u.Name == name);
 
 	public User? GetByPhoneNumber(string phoneNumber) => set.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
-
+	//
 	public void ChangeRights(bool rights, int id)
 	{
 		var user = GetByID(id);
