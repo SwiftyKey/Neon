@@ -6,5 +6,4 @@ public class UserVm: BaseVm
 	public required string Email { get; set; }
 	public string? PhoneNumber { get; set; }
 	public required string Password { get; set; }
-	public DateTime? BirthDate { get; set; }
 }

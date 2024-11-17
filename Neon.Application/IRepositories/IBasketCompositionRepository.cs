@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface IBasketCompositionRepository: IBaseRepository<BasketComposition>
 {
+	ICollection<Product> GetProductsByUserId(int userId);
 }

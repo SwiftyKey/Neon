@@ -9,8 +9,6 @@ public interface IUserService
 	Task DeleteAsync(UserVm model);
 	IEnumerable<UserVm> GetAll();
 	UserVm GetById(int id);
-	UserVm? GetByEmail(string email);
 	UserVm? GetByName(string name);
-	UserVm? GetByPhoneNumber(string phoneNumber);
 	Task ChangeRigths(bool rigths, int id);
 }

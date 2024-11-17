@@ -10,11 +10,7 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 		set = context.Users;
 	}
 
-	public User? GetByEmail(string email) => set.FirstOrDefault(u => u.Email == email);
-
 	public User? GetByName(string name) => set.FirstOrDefault(u => u.Name == name);
-
-	public User? GetByPhoneNumber(string phoneNumber) => set.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
 
 	public void ChangeRights(bool rights, int id)
 	{

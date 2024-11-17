@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface IStorageRepository: IBaseRepository<Storage>
 {
+	
 }

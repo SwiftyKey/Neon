@@ -14,7 +14,6 @@ public class UserService
 	IHasher hasher
 ): IUserService
 {
-
 	public async Task<UserVm> AddAsync(UserVm model)
 	{
 		var user = mapper.Map<User>(model);
@@ -40,19 +39,9 @@ public class UserService
 		return mapper.Map<UserVm>(userRepository.GetByID(id));
 	}
 
-	public UserVm GetByEmail(string email)
-	{
-		return mapper.Map<UserVm>(userRepository.GetByEmail(email));
-	}
-
 	public UserVm GetByName(string name)
 	{
-		return mapper.Map<UserVm>(userRepository.GetByEmail(name));
-	}
-
-	public UserVm GetByPhoneNumber(string phoneNumber)
-	{
-		return mapper.Map<UserVm>(userRepository.GetByEmail(phoneNumber));
+		return mapper.Map<UserVm>(userRepository.GetByName(name));
 	}
 
 	public async Task UpdateAsync(UserVm model)
