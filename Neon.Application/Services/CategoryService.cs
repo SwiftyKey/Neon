@@ -11,9 +11,9 @@ public class CategoryService
 {
 	public async Task<Category> AddAsync(Category model)
 	{
-		var order = await CategoryRepository.AddAsync(model);
+		var category = await CategoryRepository.AddAsync(model);
 		await CategoryRepository.SaveChangesAsync();
-		return order;
+		return category;
 	}
 
 	public async Task DeleteAsync(Category model)
