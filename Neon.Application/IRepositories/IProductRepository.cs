@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface IProductRepository: IBaseRepository<Product>
 {
+	Product? GetByName(string name);
 }

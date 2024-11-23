@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface IOrderRepository: IBaseRepository<Order>
 {
+	Order? GetByTitle(string title);
 }

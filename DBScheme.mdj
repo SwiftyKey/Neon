@@ -932,6 +932,22 @@
 											"top": 228,
 											"width": 185.419921875,
 											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGTWMph3bFBgxI=",
+											"_parent": {
+												"$ref": "AAAAAAGTWGj+MrA7aGU="
+											},
+											"model": {
+												"$ref": "AAAAAAGTWMph2bE+YdE="
+											},
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 482,
+											"top": 243,
+											"width": 185.419921875,
+											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
@@ -939,7 +955,7 @@
 									"left": 477,
 									"top": 103,
 									"width": 195.419921875,
-									"height": 143
+									"height": 158
 								}
 							],
 							"font": "Arial;13;0",
@@ -947,7 +963,7 @@
 							"left": 477,
 							"top": 80,
 							"width": 195.419921875,
-							"height": 166,
+							"height": 181,
 							"nameLabel": {
 								"$ref": "AAAAAAGTWGj+MrA6o0g="
 							},
@@ -1078,7 +1094,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 514,
-									"top": 265,
+									"top": 280,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -1114,7 +1130,7 @@
 								"$ref": "AAAAAAGTWGj+MrA5ddM="
 							},
 							"lineStyle": 2,
-							"points": "499:246;499:276;313:276;313:388",
+							"points": "499:261;499:276;313:276;313:388",
 							"nameLabel": {
 								"$ref": "AAAAAAGTWGxM5bDA8ps="
 							},
@@ -1315,7 +1331,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 588,
-									"top": 271,
+									"top": 279,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1333,7 +1349,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 589,
-									"top": 265,
+									"top": 280,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -1369,7 +1385,7 @@
 								"$ref": "AAAAAAGTWGj+MrA5ddM="
 							},
 							"lineStyle": 2,
-							"points": "574:246;574:311",
+							"points": "574:261;574:311",
 							"nameLabel": {
 								"$ref": "AAAAAAGTWGzNjrEHIl8="
 							},
@@ -2214,6 +2230,16 @@
 							},
 							"name": "UpdatedAt",
 							"type": "datetime",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGTWMph2bE+YdE=",
+							"_parent": {
+								"$ref": "AAAAAAGTWGj+MrA3nUE="
+							},
+							"name": "ImagePath",
+							"type": "string",
 							"length": 0
 						}
 					]

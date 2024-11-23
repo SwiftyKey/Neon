@@ -2,7 +2,7 @@
 
 namespace Neon.Application.Base;
 
-public interface IWriteRepository<TEntity> where TEntity : BaseEntity
+public interface IWriteRepository<TEntity> where TEntity : BaseAuditableEntity
 {
 	Task<TEntity> AddAsync(TEntity entity);
 	Task AddRangeAsync(IEnumerable<TEntity> entities);

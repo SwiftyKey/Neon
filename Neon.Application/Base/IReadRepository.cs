@@ -2,7 +2,7 @@
 
 namespace Neon.Application.Base;
 
-public interface IReadRepository<TEntity> where TEntity : BaseEntity
+public interface IReadRepository<TEntity> where TEntity : BaseAuditableEntity
 {
 	public IEnumerable<TEntity> GetAll();
 

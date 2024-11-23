@@ -2,6 +2,7 @@
 
 namespace Neon.Application.Base;
 
-public interface IBaseRepository<TEntity> : IWriteRepository<TEntity>, IReadRepository<TEntity> where TEntity : BaseEntity
+public interface IBaseRepository<TEntity> : 
+	IWriteRepository<TEntity>, IReadRepository<TEntity> where TEntity : BaseAuditableEntity
 {
 }

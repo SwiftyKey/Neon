@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface ICategoryRepository: IBaseRepository<Category>
 {
+	Category? GetByTitle(string title);
 }
