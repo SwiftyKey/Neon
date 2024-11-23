@@ -2,16 +2,13 @@
 
 namespace Neon.Domain.Entities;
 
-public class User: BaseEntity
+public class User: BaseAuditableEntity
 {
 	public required string Name { get; set; }
 	public required string HashPassword { get; set; }
-	public required string Email { get; set; }
-	public string? PhoneNumber { get; set; }
 	public required bool IsAdmin { get; set; }
-	public required DateTime RegistrationDate { get; set; }
 
-	public virtual ICollection<BasketComposition> Basket { get; set; } = [];
-	public virtual ICollection<ReservationHistory> History { get; set; } = [];
-	public virtual ICollection<Order> Orders { get; set; } = [];
+	public ICollection<Product> Products { get; set; } = [];
+	public ICollection<History> History { get; set; } = [];
+	public ICollection<Order> Orders { get; set; } = [];
 }

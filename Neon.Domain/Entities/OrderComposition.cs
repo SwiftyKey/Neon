@@ -4,11 +4,11 @@ namespace Neon.Domain.Entities;
 
 public class OrderComposition: BaseEntity
 {
-	public required int Count { get; set; }
+	public uint Count { get; set; }
 
-	public required int OrderId { get; set; }
-	public required Order Order { get; set; }
+	public int OrderId { get; set; }
+	public Order? Order { get; set; }
 
-	public required int ProductId { get; set; }
-	public required Product Product { get; set; }
+	public int ProductId { get; set; }
+	public Product? Product { get; set; }
 }

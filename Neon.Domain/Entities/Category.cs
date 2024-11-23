@@ -2,13 +2,9 @@
 
 namespace Neon.Domain.Entities;
 
-public class Category: BaseEntity
+public class Category: BaseAuditableEntity
 {
-	public required string Name { get; set; }
-	public int ParentId { get; set; }
-	public Category? Parent { get; set; }
+	public required string Title { get; set; }
 
-	public virtual ICollection<Category> Children { get; set; } = [];
-	public virtual ICollection<CategoryProperties> Properties { get; set; } = [];
-	public virtual ICollection<Model> Models { get; set; } = [];
+	public virtual ICollection<Product> Products { get; set; } = [];
 }

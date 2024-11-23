@@ -2,16 +2,13 @@
 
 namespace Neon.Domain.Entities;
 
-public class Order : BaseEntity
+public class Order : BaseAuditableEntity
 {
-	public required string Name { get; set; }
-	public required DateTime OrderDate { get; set; }
+	public required string Title { get; set; }
 
 	public required int UserId { get; set; }
 	public required User User { get; set; }
 
-	public required int StatusId { get; set; }
-	public required OrderStatus Status { get; set; }
-
-	public virtual ICollection<OrderComposition> Composition { get; set; } = [];
+	public ICollection<Product> Products { get; set; } = [];
+	public ICollection<OrderComposition> Compositions { get; set; } = [];
 }
