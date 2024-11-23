@@ -1,9 +1,23 @@
+using Neon.Application.Extensions;
+using Neon.Infrastructure;
+using Neon.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("Neon");
+builder.Services.AddDbContext<NeonDbContext>(options =>
+{
+	options
+		.UseSqlServer(connectionString);
+});
+
+var workingDirectory = Environment.CurrentDirectory + "\\images";
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -18,6 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
