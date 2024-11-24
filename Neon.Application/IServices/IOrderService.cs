@@ -8,6 +8,6 @@ public interface IOrderService
 	Task UpdateAsync(Order model);
 	Task DeleteAsync(Order model);
 	IEnumerable<Order> GetAll();
-	Order GetById(int id);
+	Order GetById(uint id);
 	Order? GetByTitle(string title);
 }

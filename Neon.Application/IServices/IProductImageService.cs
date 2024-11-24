@@ -4,5 +4,5 @@ namespace Neon.Application.IServices;
 
 public interface IProductImageService
 {
-	public string UploadImages(IEnumerable<IFormFile> images, int productId);
+	public string UploadImages(IEnumerable<IFormFile> images, uint productId);
 }

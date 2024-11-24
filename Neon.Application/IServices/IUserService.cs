@@ -8,7 +8,7 @@ public interface IUserService
 	Task UpdateAsync(UserVm model);
 	Task DeleteAsync(UserVm model);
 	IEnumerable<UserVm> GetAll();
-	UserVm GetById(int id);
+	UserVm GetById(uint id);
 	UserVm? GetByName(string name);
-	Task ChangeRigths(bool rigths, int id);
+	Task ChangeRigths(bool rigths, uint id);
 }

@@ -12,7 +12,7 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 
 	public User? GetByName(string name) => set.FirstOrDefault(u => u.Name == name);
 
-	public void ChangeRights(bool rights, int id)
+	public void ChangeRights(bool rights, uint id)
 	{
 		var user = GetByID(id);
 		user.IsAdmin = rights;

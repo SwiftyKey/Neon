@@ -27,7 +27,7 @@ public class ManufacturerService
 		return ManufacturerRepository.GetAll();
 	}
 
-	public Manufacturer GetById(int id)
+	public Manufacturer GetById(uint id)
 	{
 		return ManufacturerRepository.GetByID(id);
 	}

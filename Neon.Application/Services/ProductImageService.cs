@@ -7,7 +7,7 @@ public  class ProductImageService(string imagesPath) : IProductImageService
 {
 	private readonly string _imagesPath = imagesPath;
 
-	public string UploadImages(IEnumerable<IFormFile> images, int productId)
+	public string UploadImages(IEnumerable<IFormFile> images, uint productId)
 	{
 		var pathToDirectory = Path.Combine(_imagesPath, productId.ToString());
 

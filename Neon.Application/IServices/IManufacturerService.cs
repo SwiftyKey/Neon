@@ -8,6 +8,6 @@ public interface IManufacturerService
 	Task UpdateAsync(Manufacturer model);
 	Task DeleteAsync(Manufacturer model);
 	IEnumerable<Manufacturer> GetAll();
-	Manufacturer GetById(int id);
+	Manufacturer GetById(uint id);
 	Manufacturer? GetByName(string name);
 }

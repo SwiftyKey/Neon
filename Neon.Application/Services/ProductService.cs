@@ -27,7 +27,7 @@ public class ProductService
 		return ProductRepository.GetAll();
 	}
 
-	public Product GetById(int id)
+	public Product GetById(uint id)
 	{
 		return ProductRepository.GetByID(id);
 	}
