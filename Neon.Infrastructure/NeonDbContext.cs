@@ -10,6 +10,8 @@ public class NeonDbContext: DbContext
 	public DbSet<Order> Orders { get; set; }
 	public DbSet<Manufacturer> Manufacturers { get; set; }
 	public DbSet<Category> Categories { get; set; }
+	public DbSet<History> Histories { get; set; }
+	public DbSet<OrderComposition> OrderCompositions { get; set; }
 
 	public NeonDbContext(DbContextOptions<NeonDbContext> contextOptions): base(contextOptions)
 	{
