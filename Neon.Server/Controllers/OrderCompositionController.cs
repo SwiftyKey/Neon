@@ -20,8 +20,8 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 		return Ok(orderCompositionToGet);
 	}
 
-	[HttpGet(Name = nameof(GetAllHistories))]
-	public ActionResult<IEnumerable<OrderCompositionToGet>> GetAllHistories()
+	[HttpGet(Name = nameof(GetAllOrderCompositions))]
+	public ActionResult<IEnumerable<OrderCompositionToGet>> GetAllOrderCompositions()
 	{
 		var histories = orderCompositionService.GetAll();
 		return Ok(histories.Select(mapper.Map<OrderCompositionToGet>));
