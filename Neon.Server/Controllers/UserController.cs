@@ -38,14 +38,14 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 	}
 
 	[HttpPost(Name = nameof(CreateUser))]
-	public async Task<IActionResult> CreateUser([FromBody] UserToPatch user)
+	public async Task<IActionResult> CreateUser([FromBody] UserToPost userToPost)
 	{
-		if (user is null)
+		if (userToPost is null)
 			return BadRequest("User is empty");
 		if (!ModelState.IsValid)
 			return UnprocessableEntity();
-		var userToPost = mapper.Map<UserVm>(user);
-		var createdUser = await userService.AddAsync(userToPost);
+		var user = mapper.Map<UserVm>(userToPost);
+		var createdUser = await userService.AddAsync(user);
 		return CreatedAtRoute(nameof(GetUserById), new { userId = createdUser.Id }, createdUser.Id);
 	}
 
