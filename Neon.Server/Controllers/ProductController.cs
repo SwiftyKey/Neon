@@ -10,7 +10,7 @@ namespace Neon.Server.Controllers;
 [ApiController]
 public class ProductController(IProductService productService, IMapper mapper) : ControllerBase
 {
-	[HttpGet("{productId:uint}", Name = nameof(GetProductById))]
+	[HttpGet("{productId:int}", Name = nameof(GetProductById))]
 	public ActionResult<ProductToGet> GetProductById([FromRoute] uint productId)
 	{
 		var product = productService.GetById(productId);
@@ -20,7 +20,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 		return Ok(productToGet);
 	}
 
-	[HttpGet("{name:string}", Name = nameof(GetProductByName))]
+	[HttpGet("{name}", Name = nameof(GetProductByName))]
 	public ActionResult<ProductToGet> GetProductByName([FromRoute] string name)
 	{
 		var product = productService.GetByName(name);
@@ -49,7 +49,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 		return CreatedAtRoute(nameof(GetProductById), new { productId = createdProduct.Id }, createdProduct.Id);
 	}
 
-	[HttpPatch("{productId:uint}", Name = nameof(UpdateProduct))]
+	[HttpPatch("{productId:int}", Name = nameof(UpdateProduct))]
 	public async Task<IActionResult> UpdateProduct(uint productId, [FromBody] ProductToPatch productToPatch)
 	{
 		var product = mapper.Map<Product>(productToPatch);
@@ -58,7 +58,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 		return Ok();
 	}
 
-	[HttpDelete("{productId:uint}", Name = nameof(DeleteProduct))]
+	[HttpDelete("{productId:int}", Name = nameof(DeleteProduct))]
 	public async Task<IActionResult> DeleteProduct(uint productId)
 	{
 		await productService.DeleteAsync(productService.GetById(productId));

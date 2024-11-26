@@ -10,7 +10,7 @@ namespace Neon.Server.Controllers;
 [ApiController]
 public class UserController(IUserService userService, IMapper mapper) : Controller
 {
-	[HttpGet("{userId:uint}", Name = nameof(GetUserById))]
+	[HttpGet("{userId:int}", Name = nameof(GetUserById))]
 	public ActionResult<UserToGet> GetUserById([FromRoute] uint userId)
 	{
 		var user = userService.GetById(userId);
@@ -20,7 +20,7 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 		return Ok(userToGet);
 	}
 
-	[HttpGet("{name:string}", Name = nameof(GetUserByName))]
+	[HttpGet("{name}", Name = nameof(GetUserByName))]
 	public ActionResult<UserToGet> GetUserByName([FromRoute] string name)
 	{
 		var user = userService.GetByName(name);
@@ -49,7 +49,7 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 		return CreatedAtRoute(nameof(GetUserById), new { userId = createdUser.Id }, createdUser.Id);
 	}
 
-	[HttpPatch("{userId:uint}", Name = nameof(UpdateUser))]
+	[HttpPatch("{userId:int}", Name = nameof(UpdateUser))]
 	public async Task<IActionResult> UpdateUser(uint userId, [FromBody] UserToPatch userToPatch)
 	{
 		var user = mapper.Map<UserVm>(userToPatch);
@@ -58,7 +58,7 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 		return Ok();
 	}
 
-	[HttpDelete("{userId:uint}", Name = nameof(DeleteUser))]
+	[HttpDelete("{userId:int}", Name = nameof(DeleteUser))]
 	public async Task<IActionResult> DeleteUser(uint userId)
 	{
 		await userService.DeleteAsync(new UserVm { Id = userId });

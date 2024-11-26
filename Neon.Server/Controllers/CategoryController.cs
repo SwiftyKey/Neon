@@ -10,7 +10,7 @@ namespace Neon.Server.Controllers;
 [ApiController]
 public class CategoryController(ICategoryService categoryService, IMapper mapper) : ControllerBase
 {
-	[HttpGet("{categoryid:uint}", Name = nameof(GetCategoryById))]
+	[HttpGet("{categoryid:int}", Name = nameof(GetCategoryById))]
 	public ActionResult<CategoryToGet> GetCategoryById([FromRoute] uint categoryid)
 	{
 		var category = categoryService.GetById(categoryid);
@@ -20,7 +20,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 		return Ok(categoryToGet);
 	}
 
-	[HttpGet("{title:string}", Name = nameof(GetCategoryByTitle))]
+	[HttpGet("{title}", Name = nameof(GetCategoryByTitle))]
 	public ActionResult<CategoryToGet> GetCategoryByTitle([FromRoute] string title)
 	{
 		var category = categoryService.GetByTitle(title);
@@ -49,7 +49,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 		return CreatedAtRoute(nameof(GetCategoryById), new { categoryid = createdCategory.Id }, createdCategory.Id);
 	}
 
-	[HttpPatch("{categoryid:uint}", Name = nameof(UpdateCategory))]
+	[HttpPatch("{categoryid:int}", Name = nameof(UpdateCategory))]
 	public async Task<IActionResult> UpdateCategory(uint categoryid, [FromBody] CategoryToPatch categoryToPatch)
 	{
 		var category = mapper.Map<Category>(categoryToPatch);
@@ -58,7 +58,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 		return Ok();
 	}
 
-	[HttpDelete("{categoryid:uint}", Name = nameof(DeleteCategory))]
+	[HttpDelete("{categoryid:int}", Name = nameof(DeleteCategory))]
 	public async Task<IActionResult> DeleteCategory(uint categoryid)
 	{
 		await categoryService.DeleteAsync(categoryService.GetById(categoryid));

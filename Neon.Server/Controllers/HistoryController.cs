@@ -10,7 +10,7 @@ namespace Neon.Server.Controllers;
 [ApiController]
 public class HistoryController(IHistoryService historyService, IMapper mapper) : ControllerBase
 {
-	[HttpGet("{historyId:uint}", Name = nameof(GetHistoryById))]
+	[HttpGet("{historyId:int}", Name = nameof(GetHistoryById))]
 	public ActionResult<HistoryToGet> GetHistoryById([FromRoute] uint historyId)
 	{
 		var history = historyService.GetById(historyId);
@@ -39,7 +39,7 @@ public class HistoryController(IHistoryService historyService, IMapper mapper) :
 		return CreatedAtRoute(nameof(GetHistoryById), new { historyId = createdHistory.Id }, createdHistory.Id);
 	}
 
-	[HttpPatch("{historyId:uint}", Name = nameof(UpdateHistory))]
+	[HttpPatch("{historyId:int}", Name = nameof(UpdateHistory))]
 	public async Task<IActionResult> UpdateHistory(uint historyId, [FromBody] HistoryToPatch historyToPatch)
 	{
 		var history = mapper.Map<History>(historyToPatch);
@@ -48,7 +48,7 @@ public class HistoryController(IHistoryService historyService, IMapper mapper) :
 		return Ok();
 	}
 
-	[HttpDelete("{historyId:uint}", Name = nameof(DeleteHistory))]
+	[HttpDelete("{historyId:int}", Name = nameof(DeleteHistory))]
 	public async Task<IActionResult> DeleteHistory(uint historyId)
 	{
 		await historyService.DeleteAsync(historyService.GetById(historyId));

@@ -10,7 +10,7 @@ namespace Neon.Server.Controllers;
 [ApiController]
 public class OrderController(IOrderService orderService, IMapper mapper) : ControllerBase
 {
-	[HttpGet("{orderId:uint}", Name = nameof(GetOrderById))]
+	[HttpGet("{orderId:int}", Name = nameof(GetOrderById))]
 	public ActionResult<OrderToGet> GetOrderById([FromRoute] uint orderId)
 	{
 		var order = orderService.GetById(orderId);
@@ -20,7 +20,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 		return Ok(orderToGet);
 	}
 
-	[HttpGet("{title:string}", Name = nameof(GetOrderByTitle))]
+	[HttpGet("{title}", Name = nameof(GetOrderByTitle))]
 	public ActionResult<OrderToGet> GetOrderByTitle([FromRoute] string title)
 	{
 		var order = orderService.GetByTitle(title);
@@ -49,7 +49,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 		return CreatedAtRoute(nameof(GetOrderById), new { orderId = createdOrder.Id }, createdOrder.Id);
 	}
 
-	[HttpPatch("{orderId:uint}", Name = nameof(UpdateOrder))]
+	[HttpPatch("{orderId:int}", Name = nameof(UpdateOrder))]
 	public async Task<IActionResult> UpdateOrder(uint orderId, [FromBody] OrderToPatch orderToPatch)
 	{
 		var order = mapper.Map<Order>(orderToPatch);
@@ -58,7 +58,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 		return Ok();
 	}
 
-	[HttpDelete("{orderId:uint}", Name = nameof(DeleteOrder))]
+	[HttpDelete("{orderId:int}", Name = nameof(DeleteOrder))]
 	public async Task<IActionResult> DeleteOrder(uint orderId)
 	{
 		await orderService.DeleteAsync(orderService.GetById(orderId));

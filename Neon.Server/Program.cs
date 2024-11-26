@@ -2,6 +2,7 @@ using Neon.Application.Extensions;
 using Neon.Infrastructure;
 using Neon.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Neon.Server.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<NeonDbContext>(options =>
 var workingDirectory = Environment.CurrentDirectory + "\\images";
 
 builder.Services.AddRepositories();
+builder.Services.RegisterMapster();
 builder.Services.AddServices();
 
 builder.Services.AddControllers();
