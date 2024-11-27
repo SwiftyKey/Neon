@@ -11,7 +11,7 @@ namespace Neon.Server.Controllers;
 public class ManufacturerController(IManufacturerService manufacturerService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("{manufacturerId:int}", Name = nameof(GetManufacturerById))]
-	public ActionResult<ManufacturerToGet> GetManufacturerById([FromRoute] uint manufacturerId)
+	public ActionResult<ManufacturerToGet> GetManufacturerById([FromRoute] int manufacturerId)
 	{
 		var manufacturer = manufacturerService.GetById(manufacturerId);
 		if (manufacturer is null)
@@ -50,7 +50,7 @@ public class ManufacturerController(IManufacturerService manufacturerService, IM
 	}
 
 	[HttpPatch("{manufacturerId:int}", Name = nameof(UpdateManufacturer))]
-	public async Task<IActionResult> UpdateManufacturer(uint manufacturerId, [FromBody] ManufacturerToPatch manufacturerToPatch)
+	public async Task<IActionResult> UpdateManufacturer(int manufacturerId, [FromBody] ManufacturerToPatch manufacturerToPatch)
 	{
 		var manufacturer = mapper.Map<Manufacturer>(manufacturerToPatch);
 		manufacturer.Id = manufacturerId;
@@ -59,7 +59,7 @@ public class ManufacturerController(IManufacturerService manufacturerService, IM
 	}
 
 	[HttpDelete("{manufacturerId:int}", Name = nameof(DeleteManufacturer))]
-	public async Task<IActionResult> DeleteManufacturer(uint manufacturerId)
+	public async Task<IActionResult> DeleteManufacturer(int manufacturerId)
 	{
 		await manufacturerService.DeleteAsync(manufacturerService.GetById(manufacturerId));
 		return Ok();

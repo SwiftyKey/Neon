@@ -8,6 +8,6 @@ public interface IProductService
 	Task UpdateAsync(Product model);
 	Task DeleteAsync(Product model);
 	IEnumerable<Product> GetAll();
-	Product GetById(uint id);
+	Product GetById(int id);
 	Product? GetByName(string name);
 }

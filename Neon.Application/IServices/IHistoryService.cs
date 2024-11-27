@@ -8,5 +8,5 @@ public interface IHistoryService
 	Task UpdateAsync(History model);
 	Task DeleteAsync(History model);
 	IEnumerable<History> GetAll();
-	History GetById(uint id);
+	History GetById(int id);
 }

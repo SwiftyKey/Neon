@@ -8,5 +8,5 @@ public interface IOrderCompositionService
 	Task UpdateAsync(OrderComposition model);
 	Task DeleteAsync(OrderComposition model);
 	IEnumerable<OrderComposition> GetAll();
-	OrderComposition GetById(uint id);
+	OrderComposition GetById(int id);
 }

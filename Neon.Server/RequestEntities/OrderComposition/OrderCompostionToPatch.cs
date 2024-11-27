@@ -2,7 +2,7 @@
 
 public class OrderCompostionToPatch
 {
-	public uint? OrderId { get; set; }
-	public uint? ProductId { get; set; }
-	public uint? Count { get; set; }
+	public int? OrderId { get; set; }
+	public int? ProductId { get; set; }
+	public int? Count { get; set; }
 }

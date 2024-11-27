@@ -57,7 +57,7 @@ public abstract class BaseRepository<TEntity>(NeonDbContext context) : IBaseRepo
 		return set;
 	}
 
-	public TEntity GetByID(uint id)
+	public TEntity GetByID(int id)
 	{
 		return set.First(el => el.Id == id);
 	}

@@ -27,7 +27,7 @@ public class OrderService
 		return OrderRepository.GetAll();
 	}
 
-	public Order GetById(uint id)
+	public Order GetById(int id)
 	{
 		return OrderRepository.GetByID(id);
 	}

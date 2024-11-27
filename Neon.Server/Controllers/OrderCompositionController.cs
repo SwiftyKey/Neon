@@ -11,7 +11,7 @@ namespace Neon.Server.Controllers;
 public class OrderCompositionController(IOrderCompositionService orderCompositionService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("{orderCompositionId:int}", Name = nameof(GetOrderCompositionById))]
-	public ActionResult<OrderCompositionToGet> GetOrderCompositionById([FromRoute] uint orderCompositionId)
+	public ActionResult<OrderCompositionToGet> GetOrderCompositionById([FromRoute] int orderCompositionId)
 	{
 		var orderComposition = orderCompositionService.GetById(orderCompositionId);
 		if (orderComposition is null)
@@ -40,7 +40,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpPatch("{orderCompositionId:int}", Name = nameof(UpdateOrderComposition))]
-	public async Task<IActionResult> UpdateOrderComposition(uint orderCompositionId, [FromBody] OrderCompostionToPatch orderCompositionToPatch)
+	public async Task<IActionResult> UpdateOrderComposition(int orderCompositionId, [FromBody] OrderCompostionToPatch orderCompositionToPatch)
 	{
 		var orderComposition = mapper.Map<OrderComposition>(orderCompositionToPatch);
 		orderComposition.Id = orderCompositionId;
@@ -49,7 +49,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpDelete("{orderCompositionId:int}", Name = nameof(DeleteOrderComposition))]
-	public async Task<IActionResult> DeleteOrderComposition(uint orderCompositionId)
+	public async Task<IActionResult> DeleteOrderComposition(int orderCompositionId)
 	{
 		await orderCompositionService.DeleteAsync(orderCompositionService.GetById(orderCompositionId));
 		return Ok();

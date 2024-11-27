@@ -34,7 +34,7 @@ public class UserService
 		return userRepository.GetAll().Select(mapper.Map<UserVm>);
 	}
 
-	public UserVm GetById(uint id)
+	public UserVm GetById(int id)
 	{
 		return mapper.Map<UserVm>(userRepository.GetByID(id));
 	}
@@ -53,7 +53,7 @@ public class UserService
 		await userRepository.SaveChangesAsync();
 	}
 
-	public async Task ChangeRigths(bool rigths, uint id)
+	public async Task ChangeRigths(bool rigths, int id)
 	{
 		userRepository.ChangeRights(rigths, id);
 		await userRepository.SaveChangesAsync();

@@ -27,7 +27,7 @@ public class HistoryService
 		return HistoryRepository.GetAll();
 	}
 
-	public History GetById(uint id)
+	public History GetById(int id)
 	{
 		return HistoryRepository.GetByID(id);
 	}

@@ -6,5 +6,5 @@ public interface IReadRepository<TEntity> where TEntity : BaseAuditableEntity
 {
 	public IEnumerable<TEntity> GetAll();
 
-	public TEntity GetByID(uint id);
+	public TEntity GetByID(int id);
 }

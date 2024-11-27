@@ -27,7 +27,7 @@ public class CategoryService
 		return CategoryRepository.GetAll();
 	}
 
-	public Category GetById(uint id)
+	public Category GetById(int id)
 	{
 		return CategoryRepository.GetByID(id);
 	}

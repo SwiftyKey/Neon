@@ -8,6 +8,6 @@ public interface ICategoryService
 	Task UpdateAsync(Category model);
 	Task DeleteAsync(Category model);
 	IEnumerable<Category> GetAll();
-	Category GetById(uint id);
+	Category GetById(int id);
 	Category? GetByTitle(string title);
 }
