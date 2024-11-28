@@ -8,7 +8,7 @@ public class Product : BaseAuditableEntity
 	public string? Description { get; set; }
 	public required double Cost { get; set; }
 	public required int Count { get; set; }
-	public required string ImagePath { get; set; }
+	public string? ImagePath { get; set; }
 
 	public required int CategoryId { get; set; }
 	public required Category Category { get; set; }
