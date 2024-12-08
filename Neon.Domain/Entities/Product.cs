@@ -11,10 +11,10 @@ public class Product : BaseAuditableEntity
 	public string? ImagePath { get; set; }
 
 	public required int CategoryId { get; set; }
-	public required Category Category { get; set; }
+	public Category Category { get; set; }
 
 	public required int ManufacturerId { get; set; }
-	public required Manufacturer Manufacturer { get; set; }
+	public Manufacturer Manufacturer { get; set; }
 
 	public ICollection<History> History { get; set; } = [];
 	public ICollection<OrderComposition> Compositions { get; set; } = [];

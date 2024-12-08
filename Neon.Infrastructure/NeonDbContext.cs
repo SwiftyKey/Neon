@@ -3,7 +3,7 @@ using Neon.Domain.Entities;
 
 namespace Neon.Infrastructure;
 
-public class NeonDbContext: DbContext
+public class NeonDbContext : DbContext
 {
 	public DbSet<User> Users { get; set; }
 	public DbSet<Product> Products { get; set; }
@@ -13,7 +13,7 @@ public class NeonDbContext: DbContext
 	public DbSet<History> Histories { get; set; }
 	public DbSet<OrderComposition> OrderCompositions { get; set; }
 
-	public NeonDbContext(DbContextOptions<NeonDbContext> contextOptions): base(contextOptions)
+	public NeonDbContext(DbContextOptions<NeonDbContext> contextOptions) : base(contextOptions)
 	{
 		//Database.EnsureDeleted();
 		Database.EnsureCreated();
@@ -21,53 +21,8 @@ public class NeonDbContext: DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder
-			.Entity<User>()
-			.HasMany(u => u.Orders)
-			.WithOne(o => o.User)
-			.OnDelete(DeleteBehavior.ClientCascade);
-
-		modelBuilder
-			.Entity<User>()
-			.HasIndex(u => u.Name)
-			.IsUnique();
-
-		modelBuilder
-			.Entity<User>()
-			.HasIndex(u => u.HashPassword)
-			.IsUnique();
-
-		modelBuilder
-			.Entity<Order>()
-			.HasIndex(u => u.Title)
-			.IsUnique();
-
-		modelBuilder
-			.Entity<Manufacturer>()
-			.HasMany(o => o.Products)
-			.WithOne(c => c.Manufacturer)
-			.OnDelete(DeleteBehavior.ClientCascade);
-
-		modelBuilder
-			.Entity<Manufacturer>()
-			.HasIndex(u => u.Name)
-			.IsUnique();
-
-		modelBuilder
-			.Entity<Category>()
-			.HasMany(o => o.Products)
-			.WithOne(c => c.Category)
-			.OnDelete(DeleteBehavior.ClientCascade);
-
-		modelBuilder
-			.Entity<Category>()
-			.HasIndex(u => u.Title)
-			.IsUnique();
-
-		modelBuilder
-			.Entity<Product>()
-			.HasIndex(u => u.Name)
-			.IsUnique();
+		modelBuilder.ApplyConfigurationsFromAssembly(typeof(NeonDbContext).Assembly);
+		base.OnModelCreating(modelBuilder);
 
 		modelBuilder
 			.Entity<User>()
@@ -110,5 +65,13 @@ public class NeonDbContext: DbContext
 					j.HasKey(oc => new { oc.ProductId, oc.OrderId });
 				}
 			);
+	}
+
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder
+			.UseSqlServer()
+			.EnableSensitiveDataLogging();
+		base.OnConfiguring(optionsBuilder);
 	}
 }
