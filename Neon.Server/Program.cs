@@ -9,8 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Neon");
 builder.Services.AddDbContext<NeonDbContext>(options =>
 {
-	options
-		.UseSqlServer(connectionString);
+	options.UseSqlServer(connectionString);
 });
 
 var workingDirectory = Environment.CurrentDirectory + "\\images";
@@ -35,6 +34,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+app.UseCors(builder => builder.AllowAnyOrigin());
 
 app.MapControllers();
 
