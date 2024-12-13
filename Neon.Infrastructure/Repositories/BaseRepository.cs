@@ -52,7 +52,7 @@ public abstract class BaseRepository<TEntity>(NeonDbContext context) : IBaseRepo
 		await context.SaveChangesAsync();
 	}
 
-	public IEnumerable<TEntity> GetAll()
+	public virtual IEnumerable<TEntity> GetAll()
 	{
 		return set;
 	}
