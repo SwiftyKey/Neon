@@ -29,7 +29,7 @@ public class OrderCompositionService
 
 	public OrderComposition GetById(int id)
 	{
-		return OrderCompositionRepository.GetByID(id);
+		return OrderCompositionRepository.GetById(id);
 	}
 
 	public async Task UpdateAsync(OrderComposition model)

@@ -17,7 +17,16 @@ var workingDirectory = Environment.CurrentDirectory + "\\images";
 builder.Services.AddRepositories();
 builder.Services.RegisterMapster();
 builder.Services.AddServices();
-
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("ClientApp", policy =>
+	{
+		policy.WithOrigins("http://localhost:4200");
+		policy.AllowAnyMethod();
+		policy.AllowAnyHeader();
+		policy.AllowCredentials();
+	});
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

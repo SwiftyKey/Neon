@@ -1,4 +1,5 @@
-﻿using Neon.Application.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Neon.Application.IRepositories;
 using Neon.Domain.Entities;
 
 namespace Neon.Infrastructure.Repositories;
@@ -10,11 +11,26 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 		set = context.Users;
 	}
 
-	public User? GetByName(string name) => set.FirstOrDefault(u => u.Name == name);
+	public override IEnumerable<User> GetAll() => [.. set
+		.Include(u => u.Products)
+		.Include(u => u.History)
+		.Include(u => u.Orders)];
+
+	public User GetById(int id) => set
+		.Include(u => u.Products)
+		.Include(u => u.History)
+		.Include(u => u.Orders)
+		.First(el => el.Id == id);
+
+	public User? GetByName(string name) => set
+		.Include(u => u.Products)
+		.Include(u => u.History)
+		.Include(u => u.Orders)
+		.FirstOrDefault(u => u.Name == name);
 
 	public void ChangeRights(bool rights, int id)
 	{
-		var user = GetByID(id);
+		var user = GetById(id);
 		user.IsAdmin = rights;
 		set.Update(user);
 	}

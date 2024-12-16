@@ -36,7 +36,7 @@ public class UserService
 
 	public UserVm GetById(int id)
 	{
-		return mapper.Map<UserVm>(userRepository.GetByID(id));
+		return mapper.Map<UserVm>(userRepository.GetById(id));
 	}
 
 	public UserVm GetByName(string name)
@@ -46,7 +46,7 @@ public class UserService
 
 	public async Task UpdateAsync(UserVm model)
 	{
-		var entity = userRepository.GetByID(model.Id);
+		var entity = userRepository.GetById(model.Id);
 		var updatedEntity = mapper.Map(model, entity);
 
 		userRepository.Update(updatedEntity);

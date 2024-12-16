@@ -6,5 +6,6 @@ namespace Neon.Application.IRepositories;
 public interface IUserRepository: IBaseRepository<User>
 {
 	User? GetByName(string name);
+	User GetById(int id);
 	void ChangeRights(bool rights, int id);
 }

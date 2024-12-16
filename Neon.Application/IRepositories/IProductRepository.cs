@@ -6,4 +6,5 @@ namespace Neon.Application.IRepositories;
 public interface IProductRepository: IBaseRepository<Product>
 {
 	IEnumerable<Product> GetByName(string name);
+	Product GetById(int id);
 }

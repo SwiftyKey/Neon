@@ -29,7 +29,7 @@ public class CategoryService
 
 	public Category GetById(int id)
 	{
-		return CategoryRepository.GetByID(id);
+		return CategoryRepository.GetById(id);
 	}
 
 	public Category GetByTitle(string title)

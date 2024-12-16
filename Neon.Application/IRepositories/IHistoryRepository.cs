@@ -5,4 +5,5 @@ namespace Neon.Application.IRepositories;
 
 public interface IHistoryRepository: IBaseRepository<History>
 {
+	History GetById(int id);
 }

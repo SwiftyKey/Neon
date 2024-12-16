@@ -1,4 +1,5 @@
-﻿using Neon.Application.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Neon.Application.IRepositories;
 using Neon.Domain.Entities;
 
 namespace Neon.Infrastructure.Repositories;
@@ -10,5 +11,20 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 		set = context.Orders;
 	}
 
-	public Order? GetByTitle(string title) => set.FirstOrDefault(u => u.Title == title);
+	public override IEnumerable<Order> GetAll() => [.. set
+		.Include(c => c.User)
+		.Include(c => c.Products)
+		.Include(c => c.Compositions)];
+
+	public Order GetById(int id) => set
+		.Include(c => c.User)
+		.Include(c => c.Products)
+		.Include(c => c.Compositions)
+		.First(el => el.Id == id);
+
+	public Order? GetByTitle(string title) => set
+		.Include(c => c.User)
+		.Include(c => c.Products)
+		.Include(c => c.Compositions)
+		.FirstOrDefault(u => u.Title == title);
 }

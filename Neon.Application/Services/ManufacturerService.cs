@@ -29,7 +29,7 @@ public class ManufacturerService
 
 	public Manufacturer GetById(int id)
 	{
-		return ManufacturerRepository.GetByID(id);
+		return ManufacturerRepository.GetById(id);
 	}
 
 	public Manufacturer GetByName(string name)

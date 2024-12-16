@@ -29,7 +29,7 @@ public class HistoryService
 
 	public History GetById(int id)
 	{
-		return HistoryRepository.GetByID(id);
+		return HistoryRepository.GetById(id);
 	}
 
 	public async Task UpdateAsync(History model)

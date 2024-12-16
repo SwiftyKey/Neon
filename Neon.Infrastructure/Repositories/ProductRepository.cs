@@ -11,6 +11,11 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
 		set = context.Products;
 	}
 
+	public Product GetById(int id) => set
+		.Include(c => c.Category)
+		.Include(m => m.Manufacturer)
+		.First(el => el.Id == id);
+
 	public IEnumerable<Product> GetByName(string name) => [.. set
 		.Include(c => c.Category)
 		.Include(m => m.Manufacturer)

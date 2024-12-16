@@ -29,7 +29,7 @@ public class OrderService
 
 	public Order GetById(int id)
 	{
-		return OrderRepository.GetByID(id);
+		return OrderRepository.GetById(id);
 	}
 
 	public Order GetByTitle(string title)
