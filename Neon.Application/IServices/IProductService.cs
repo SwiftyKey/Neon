@@ -9,5 +9,5 @@ public interface IProductService
 	Task DeleteAsync(Product model);
 	IEnumerable<Product> GetAll();
 	Product GetById(int id);
-	Product? GetByName(string name);
+	IEnumerable<Product> GetByName(string name);
 }

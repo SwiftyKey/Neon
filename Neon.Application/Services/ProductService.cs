@@ -32,7 +32,7 @@ public class ProductService
 		return ProductRepository.GetByID(id);
 	}
 
-	public Product GetByName(string name)
+	public IEnumerable<Product> GetByName(string name)
 	{
 		return ProductRepository.GetByName(name);
 	}

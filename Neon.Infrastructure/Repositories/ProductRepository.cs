@@ -1,4 +1,5 @@
-﻿using Neon.Application.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Neon.Application.IRepositories;
 using Neon.Domain.Entities;
 
 namespace Neon.Infrastructure.Repositories;
@@ -10,5 +11,12 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
 		set = context.Products;
 	}
 
-	public Product? GetByName(string name) => set.FirstOrDefault(u => u.Name == name);
+	public IEnumerable<Product> GetByName(string name) => [.. set
+		.Include(c => c.Category)
+		.Include(m => m.Manufacturer)
+		.Where(p => EF.Functions.Like(p.Name.ToLower(), $"%{name.ToLower()}%"))];
+
+	public override IEnumerable<Product> GetAll() => [.. set
+		.Include(c => c.Category)
+		.Include(m => m.Manufacturer)];
 }

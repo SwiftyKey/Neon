@@ -21,20 +21,21 @@ public class ProductController(IProductService productService, IMapper mapper) :
 	}
 
 	[HttpGet("{name}", Name = nameof(GetProductByName))]
-	public ActionResult<ProductToGet> GetProductByName([FromRoute] string name)
+	public ActionResult<IEnumerable<ProductToGet>> GetProductByName([FromRoute] string name)
 	{
-		var product = productService.GetByName(name);
-		if (product is null)
+		var products = productService.GetByName(name);
+		if (products is null)
 			return NotFound();
-		var productToGet = mapper.Map<ProductToGet>(product);
-		return Ok(productToGet);
+		var productsToGet = products.Select(mapper.Map<ProductToGet>);
+		return Ok(productsToGet);
 	}
 
 	[HttpGet(Name = nameof(GetAllProducts))]
 	public ActionResult<IEnumerable<ProductToGet>> GetAllProducts()
 	{
 		var products = productService.GetAll();
-		return Ok(products.Select(mapper.Map<ProductToGet>));
+		var productsToGet = products.Select(mapper.Map<ProductToGet>);
+		return Ok(productsToGet);
 	}
 
 	[HttpPost(Name = nameof(CreateProduct))]
