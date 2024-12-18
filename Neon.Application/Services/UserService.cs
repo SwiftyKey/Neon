@@ -4,6 +4,7 @@ using Neon.Application.IServices;
 using Neon.Application.ViewModels;
 using Neon.Domain.Entities;
 using MapsterMapper;
+using Neon.Application.Contracts;
 
 namespace Neon.Application.Services;
 
@@ -11,8 +12,9 @@ public class UserService
 (
 	IMapper mapper,
 	IUserRepository userRepository,
-	IHasher hasher
-): IUserService
+	IHasher hasher,
+	IJwtProvider jwtProvider
+) : IUserService
 {
 	public async Task<UserVm> AddAsync(UserVm model)
 	{
@@ -57,5 +59,12 @@ public class UserService
 	{
 		userRepository.ChangeRights(rigths, id);
 		await userRepository.SaveChangesAsync();
+	}
+
+	public async Task<string> Login(UserVm user)
+	{
+		user.Password = hasher.Hash(user.Password);
+		var u = await userRepository.Login(user);
+		return jwtProvider.GenerateToken(u);
 	}
 }

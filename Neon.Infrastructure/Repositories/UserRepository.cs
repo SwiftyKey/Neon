@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Neon.Application.IRepositories;
+using Neon.Application.ViewModels;
 using Neon.Domain.Entities;
 
 namespace Neon.Infrastructure.Repositories;
@@ -39,6 +40,17 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 		.Include(u => u.Orders)
 		.ThenInclude(o => o.Compositions)
 		.FirstOrDefault(u => u.Name == name);
+
+	public async Task<User?> Login(UserVm user)
+	{
+		User? result = await set
+			.FirstOrDefaultAsync
+			(
+				u => u.HashPassword == user.Password && 
+				u.Name == user.Name
+			);
+		return result is null ? null : GetByID(result.Id);
+	}
 
 	public void ChangeRights(bool rights, int id)
 	{
