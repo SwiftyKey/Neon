@@ -27,6 +27,11 @@ public class OrderCompositionService
 		return OrderCompositionRepository.GetAll();
 	}
 
+	public IEnumerable<OrderComposition> GetCompositionsByOrderId(int id)
+	{
+		return OrderCompositionRepository.GetCompositionsByOrderId(id);
+	}
+
 	public OrderComposition GetById(int id)
 	{
 		return OrderCompositionRepository.GetById(id);

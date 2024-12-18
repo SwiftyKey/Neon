@@ -23,8 +23,15 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	[HttpGet(Name = nameof(GetAllOrderCompositions))]
 	public ActionResult<IEnumerable<OrderCompositionToGet>> GetAllOrderCompositions()
 	{
-		var histories = orderCompositionService.GetAll();
-		return Ok(histories.Select(mapper.Map<OrderCompositionToGet>));
+		var orderCompositions = orderCompositionService.GetAll();
+		return Ok(orderCompositions.Select(mapper.Map<OrderCompositionToGet>));
+	}
+
+	[HttpGet("{orderId:int}", Name = nameof(GetCompositionsByOrderId))]
+	public ActionResult<IEnumerable<OrderCompositionToGet>> GetCompositionsByOrderId(int orderId)
+	{
+		var orderCompositions = orderCompositionService.GetCompositionsByOrderId(orderId);
+		return Ok(orderCompositions.Select(mapper.Map<OrderCompositionToGet>));
 	}
 
 	[HttpPost(Name = nameof(CreateOrderComposition))]

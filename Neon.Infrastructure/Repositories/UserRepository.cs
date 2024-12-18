@@ -13,19 +13,31 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 
 	public override IEnumerable<User> GetAll() => [.. set
 		.Include(u => u.Products)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(u => u.Products)
+		.ThenInclude(p => p.Category)
 		.Include(u => u.History)
-		.Include(u => u.Orders)];
+		.Include(u => u.Orders)
+		.ThenInclude(o => o.Compositions)];
 
 	public User GetById(int id) => set
 		.Include(u => u.Products)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(u => u.Products)
+		.ThenInclude(p => p.Category)
 		.Include(u => u.History)
 		.Include(u => u.Orders)
+		.ThenInclude(o => o.Compositions)
 		.First(el => el.Id == id);
 
 	public User? GetByName(string name) => set
 		.Include(u => u.Products)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(u => u.Products)
+		.ThenInclude(p => p.Category)
 		.Include(u => u.History)
 		.Include(u => u.Orders)
+		.ThenInclude(o => o.Compositions)
 		.FirstOrDefault(u => u.Name == name);
 
 	public void ChangeRights(bool rights, int id)

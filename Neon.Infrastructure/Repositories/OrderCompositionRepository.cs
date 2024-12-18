@@ -13,10 +13,27 @@ public class OrderCompositionRepository: BaseRepository<OrderComposition>, IOrde
 
 	public override IEnumerable<OrderComposition> GetAll() => [.. set
 		.Include(c => c.Order)
-		.Include(c => c.Product)];
+		.ThenInclude(o => o.User)
+		.Include(c => c.Product)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(c => c.Product)
+		.ThenInclude(p => p.Category)];
 
 	public OrderComposition GetById(int id) => set
 		.Include(c => c.Order)
+		.ThenInclude(o => o.User)
 		.Include(c => c.Product)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(c => c.Product)
+		.ThenInclude(p => p.Category)
 		.First(el => el.Id == id);
+
+	public IEnumerable<OrderComposition> GetCompositionsByOrderId(int id) => [.. set
+		.Include(c => c.Order)
+		.ThenInclude(o => o.User)
+		.Include(c => c.Product)
+		.ThenInclude(p => p.Manufacturer)
+		.Include(c => c.Product)
+		.ThenInclude(p => p.Category)
+		.Where(oc => oc.OrderId == id)];
 }
