@@ -2,5 +2,5 @@
 
 public interface IForecastingService
 {
-	List<double> Forecast();
+	List<int> Forecast();
 }

@@ -10,8 +10,8 @@ public class NeonDbContext : DbContext
 	public DbSet<Order> Orders { get; set; }
 	public DbSet<Manufacturer> Manufacturers { get; set; }
 	public DbSet<Category> Categories { get; set; }
-	public DbSet<History> Histories { get; set; }
 	public DbSet<OrderComposition> OrderCompositions { get; set; }
+	public DbSet<Visit> Visits { get; set; }
 
 	public NeonDbContext(DbContextOptions<NeonDbContext> contextOptions) : base(contextOptions)
 	{
@@ -23,72 +23,6 @@ public class NeonDbContext : DbContext
 	{
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(NeonDbContext).Assembly);
 		base.OnModelCreating(modelBuilder);
-
-		modelBuilder
-			.Entity<User>()
-			.HasMany(u => u.Products)
-			.WithMany(p => p.Users)
-			.UsingEntity<History>
-			(
-				j => j
-					.HasOne(h => h.Product)
-					.WithMany(pr => pr.History)
-					.HasForeignKey(h => h.ProductId),
-				j => j
-					.HasOne(h => h.User)
-					.WithMany(pr => pr.History)
-					.HasForeignKey(h => h.UserId),
-				j =>
-				{
-					j.Property(h => h.Date);
-				}
-			);
-
-		modelBuilder
-			.Entity<History>()
-			.HasData
-			(
-				new History
-				{
-					Id = 1,
-					UserId = 3,
-					ProductId = 1,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
-				},
-				new History
-				{
-					Id = 2,
-					UserId = 3,
-					ProductId = 11,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
-				},
-				new History
-				{
-					Id = 3,
-					UserId = 2,
-					ProductId = 3,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
-				},
-				new History
-				{
-					Id = 4,
-					UserId = 3,
-					ProductId = 2,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
-				},
-				new History
-				{
-					Id = 5,
-					UserId = 3,
-					ProductId = 12,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
-				}
-			);
 
 		modelBuilder
 			.Entity<Order>()
@@ -107,120 +41,6 @@ public class NeonDbContext : DbContext
 				j =>
 				{
 					j.Property(oc => oc.Count);
-				}
-			);
-
-		modelBuilder
-			.Entity<OrderComposition>()
-			.HasData
-			(
-				new OrderComposition
-				{
-					Id = 1,
-					OrderId = 1,
-					ProductId = 5,
-					Count = 1,
-					CreatedAt = new DateTimeOffset(2024, 1, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 1, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 2,
-					OrderId = 2,
-					ProductId = 5,
-					Count = 2,
-					CreatedAt = new DateTimeOffset(2024, 2, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 2, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 3,
-					OrderId = 3,
-					ProductId = 5,
-					Count = 3,
-					CreatedAt = new DateTimeOffset(2024, 3, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 3, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 4,
-					OrderId = 4,
-					ProductId = 5,
-					Count = 1,
-					CreatedAt = new DateTimeOffset(2024, 4, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 4, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 5,
-					OrderId = 5,
-					ProductId = 5,
-					Count = 4,
-					CreatedAt = new DateTimeOffset(2024, 5, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 5, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 6,
-					OrderId = 6,
-					ProductId = 5,
-					Count = 3,
-					CreatedAt = new DateTimeOffset(2024, 6, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 6, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 7,
-					OrderId = 7,
-					ProductId = 5,
-					Count = 2,
-					CreatedAt = new DateTimeOffset(2024, 7, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 7, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 8,
-					OrderId = 8,
-					ProductId = 5,
-					Count = 2,
-					CreatedAt = new DateTimeOffset(2024, 8, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 8, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 9,
-					OrderId = 9,
-					ProductId = 5,
-					Count = 3,
-					CreatedAt = new DateTimeOffset(2024, 9, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 9, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 10,
-					OrderId = 10,
-					ProductId = 5,
-					Count = 1,
-					CreatedAt = new DateTimeOffset(2024, 10, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 10, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 11,
-					OrderId = 11,
-					ProductId = 5,
-					Count = 5,
-					CreatedAt = new DateTimeOffset(2024, 11, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 11, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
-				},
-				new OrderComposition
-				{
-					Id = 12,
-					OrderId = 12,
-					ProductId = 5,
-					Count = 7,
-					CreatedAt = new DateTimeOffset(2024, 12, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
-					UpdatedAt = new DateTimeOffset(2024, 12, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				}
 			);
 	}

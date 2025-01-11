@@ -57,7 +57,7 @@ public class CategoryContext : IEntityTypeConfiguration<Category>
 			new Category
 			{
 				Id = 6,
-				Title = "Микрокомпьютреы",
+				Title = "Микрокомпьютеры",
 				CreatedAt = DateTimeOffset.Now,
 				UpdatedAt = DateTimeOffset.Now
 			}

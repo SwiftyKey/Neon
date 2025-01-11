@@ -15,7 +15,6 @@ public static class ServicesExtension
 		collection.AddScoped<IManufacturerService, ManufacturerService>();
 		collection.AddScoped<IOrderService, OrderService>();
 		collection.AddScoped<IOrderCompositionService, OrderCompositionService>();
-		collection.AddScoped<IHistoryService, HistoryService>();
 		collection.AddScoped<IProductService, ProductService>();
 		collection.AddScoped<IUserService, UserService>();
 		collection.AddScoped<IForecastingService, ForecastingService>();
@@ -29,7 +28,6 @@ public static class ServicesExtension
 		collection.AddScoped<IManufacturerService, ManufacturerService>();
 		collection.AddScoped<IOrderService, OrderService>();
 		collection.AddScoped<IOrderCompositionService, OrderCompositionService>();
-		collection.AddScoped<IHistoryService, HistoryService>();
 		collection.AddScoped<IProductService, ProductService>();
 		collection.AddScoped<IUserService, UserService>();
 		collection.AddScoped<IForecastingService, ForecastingService>();

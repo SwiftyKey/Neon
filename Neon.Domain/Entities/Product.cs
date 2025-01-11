@@ -16,7 +16,6 @@ public class Product : BaseAuditableEntity
 	public required int ManufacturerId { get; set; }
 	public Manufacturer Manufacturer { get; set; }
 
-	public ICollection<History> History { get; set; } = [];
 	public ICollection<OrderComposition> Compositions { get; set; } = [];
 	public ICollection<User> Users { get; set; } = [];
 	public ICollection<Order> Orders { get; set; } = [];

@@ -2,7 +2,6 @@
 using Neon.Application.ViewModels;
 using Neon.Domain.Entities;
 using Neon.Server.RequestEntities.Category;
-using Neon.Server.RequestEntities.History;
 using Neon.Server.RequestEntities.Manufacturer;
 using Neon.Server.RequestEntities.Order;
 using Neon.Server.RequestEntities.OrderComposition;
@@ -36,7 +35,6 @@ public class ModelRegister : IRegister
 		.TwoWays()
 		.Map(dest => dest.Name, src => src.Name)
 		.Map(dest => dest.IsAdmin, src => src.IsAdmin)
-		.Map(dest => dest.History, src => src.History)
 		.Map(dest => dest.Orders, src => src.Orders)
 		.Map(dest => dest.Products, src => src.Products)
 		.Map(dest => dest.UpdatedAt, src => src.UpdatedAt)
@@ -62,14 +60,6 @@ public class ModelRegister : IRegister
 		.Map(dest => dest.UserId, src => src.User.Id)
 		.Map(dest => dest.Bought, src => src.Bought)
 		.Map(dest => dest.Compositions, src => src.Compositions)
-		.Map(dest => dest.UpdatedAt, src => src.UpdatedAt)
-		.Map(dest => dest.CreatedAt, src => src.CreatedAt);
-
-		config.NewConfig<History, HistoryToGet>()
-		.TwoWays()
-		.Map(dest => dest.User, src => src.User)
-		.Map(dest => dest.Product, src => src.Product)
-		.Map(dest => dest.Date, src => src.Date)
 		.Map(dest => dest.UpdatedAt, src => src.UpdatedAt)
 		.Map(dest => dest.CreatedAt, src => src.CreatedAt);
 

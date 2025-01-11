@@ -3,7 +3,6 @@ using Neon.Domain.Entities;
 
 namespace Neon.Application.IRepositories;
 
-public interface IHistoryRepository: IBaseRepository<History>
+public interface IVisitRepository: IBaseRepository<Visit>
 {
-	History GetById(int id);
 }
