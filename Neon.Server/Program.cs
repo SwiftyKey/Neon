@@ -3,6 +3,7 @@ using Neon.Infrastructure;
 using Neon.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Neon.Server.Extensions;
+using Neon.Server.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +13,12 @@ builder.Services.AddDbContext<NeonDbContext>(options =>
 	options.UseSqlServer(connectionString);
 });
 
-var workingDirectory = Environment.CurrentDirectory + "\\images";
-
 builder.Services.AddRepositories();
 builder.Services.RegisterMapster();
 builder.Services.AddServices();
+builder.Services.ConfigureIdentityService();
+builder.Services.ApiAuthentication(builder.Configuration);
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("ClientApp", policy =>
@@ -36,15 +38,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseAuthorization();
 
-app.UseCors(builder => builder.AllowAnyOrigin());
+app.UseCors("ClientApp");
 
 app.MapControllers();
 

@@ -41,7 +41,6 @@ public class NeonDbContext : DbContext
 				j =>
 				{
 					j.Property(h => h.Date);
-					j.HasKey(h => new { h.ProductId, h.UserId });
 				}
 			);
 
@@ -108,7 +107,6 @@ public class NeonDbContext : DbContext
 				j =>
 				{
 					j.Property(oc => oc.Count);
-					j.HasKey(oc => new { oc.ProductId, oc.OrderId });
 				}
 			);
 
@@ -227,11 +225,11 @@ public class NeonDbContext : DbContext
 			);
 	}
 
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder
-			.UseSqlServer()
-			.EnableSensitiveDataLogging();
-		base.OnConfiguring(optionsBuilder);
-	}
+	//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	//{
+	//	optionsBuilder
+	//		.UseSqlServer()
+	//		.EnableSensitiveDataLogging();
+	//	base.OnConfiguring(optionsBuilder);
+	//}
 }

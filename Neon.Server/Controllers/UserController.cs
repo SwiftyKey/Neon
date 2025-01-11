@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
 using Neon.Application.ViewModels;
-using Neon.Server.RequestEntities;
 using Neon.Server.RequestEntities.User;
 
 namespace Neon.Server.Controllers;
@@ -64,13 +63,5 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 	{
 		await userService.DeleteAsync(new UserVm { Id = userId });
 		return Ok();
-	}
-
-	[HttpPost(Name = nameof(Login))]
-	[Route("login")]
-	public async Task<ActionResult<Token>> Login([FromBody] UserToAuthorize user)
-	{
-		var token = new Token { AccessToken = await userService.Login(mapper.Map<UserVm>(user)) };
-		return Ok(token);
 	}
 }

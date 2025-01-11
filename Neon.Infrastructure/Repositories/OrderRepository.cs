@@ -27,4 +27,10 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 		.Include(c => c.Products)
 		.Include(c => c.Compositions)
 		.FirstOrDefault(u => u.Title == title);
+
+	public IEnumerable<Order> GetOrderByUserId(int userId) => [.. set
+		.Include(c => c.User)
+		.Include(c => c.Products)
+		.Include(c => c.Compositions)
+		.Where(u => u.UserId == userId)];
 }

@@ -10,4 +10,5 @@ public interface IOrderService
 	IEnumerable<Order> GetAll();
 	Order GetById(int id);
 	Order? GetByTitle(string title);
+	IEnumerable<Order> GetOrderByUserId(int userId);
 }

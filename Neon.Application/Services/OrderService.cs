@@ -42,4 +42,9 @@ public class OrderService
 		OrderRepository.Update(model);
 		await OrderRepository.SaveChangesAsync();
 	}
+
+	public IEnumerable<Order> GetOrderByUserId(int userId)
+	{
+		return OrderRepository.GetOrderByUserId(userId);
+	}
 }

@@ -31,19 +31,19 @@ public class UserService
 		await userRepository.SaveChangesAsync();
 	}
 
-	public IEnumerable<UserVm> GetAll()
+	public IEnumerable<User> GetAll()
 	{
-		return userRepository.GetAll().Select(mapper.Map<UserVm>);
+		return userRepository.GetAll();
 	}
 
-	public UserVm GetById(int id)
+	public User GetById(int id)
 	{
-		return mapper.Map<UserVm>(userRepository.GetById(id));
+		return userRepository.GetById(id);
 	}
 
-	public UserVm GetByName(string name)
+	public User? GetByName(string name)
 	{
-		return mapper.Map<UserVm>(userRepository.GetByName(name));
+		return userRepository.GetByName(name);
 	}
 
 	public async Task UpdateAsync(UserVm model)

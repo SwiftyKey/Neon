@@ -49,7 +49,7 @@ public class UserRepository: BaseRepository<User>, IUserRepository
 				u => u.HashPassword == user.Password && 
 				u.Name == user.Name
 			);
-		return result is null ? null : GetByID(result.Id);
+		return result is null ? null : GetById(result.Id);
 	}
 
 	public void ChangeRights(bool rights, int id)
