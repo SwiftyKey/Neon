@@ -120,8 +120,8 @@ public class NeonDbContext : DbContext
 					OrderId = 1,
 					ProductId = 5,
 					Count = 1,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 1, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 1, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -129,8 +129,8 @@ public class NeonDbContext : DbContext
 					OrderId = 2,
 					ProductId = 5,
 					Count = 2,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 2, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 2, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -138,8 +138,8 @@ public class NeonDbContext : DbContext
 					OrderId = 3,
 					ProductId = 5,
 					Count = 3,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 3, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 3, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -147,8 +147,8 @@ public class NeonDbContext : DbContext
 					OrderId = 4,
 					ProductId = 5,
 					Count = 1,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 4, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 4, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -156,8 +156,8 @@ public class NeonDbContext : DbContext
 					OrderId = 5,
 					ProductId = 5,
 					Count = 4,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 5, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 5, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -165,8 +165,8 @@ public class NeonDbContext : DbContext
 					OrderId = 6,
 					ProductId = 5,
 					Count = 3,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 6, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 6, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -174,8 +174,8 @@ public class NeonDbContext : DbContext
 					OrderId = 7,
 					ProductId = 5,
 					Count = 2,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 7, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 7, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -183,8 +183,8 @@ public class NeonDbContext : DbContext
 					OrderId = 8,
 					ProductId = 5,
 					Count = 2,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 8, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 8, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -192,8 +192,8 @@ public class NeonDbContext : DbContext
 					OrderId = 9,
 					ProductId = 5,
 					Count = 3,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 9, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 9, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -201,8 +201,8 @@ public class NeonDbContext : DbContext
 					OrderId = 10,
 					ProductId = 5,
 					Count = 1,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 10, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 10, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -210,8 +210,8 @@ public class NeonDbContext : DbContext
 					OrderId = 11,
 					ProductId = 5,
 					Count = 5,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 11, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 11, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				},
 				new OrderComposition
 				{
@@ -219,8 +219,8 @@ public class NeonDbContext : DbContext
 					OrderId = 12,
 					ProductId = 5,
 					Count = 7,
-					CreatedAt = DateTimeOffset.Now,
-					UpdatedAt = DateTimeOffset.Now
+					CreatedAt = new DateTimeOffset(2024, 12, 14, 15, 14, 15, new TimeSpan(5, 0, 0)),
+					UpdatedAt = new DateTimeOffset(2024, 12, 14, 15, 14, 15, new TimeSpan(5, 0, 0))
 				}
 			);
 	}
