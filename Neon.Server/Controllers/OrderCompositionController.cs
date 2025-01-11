@@ -1,4 +1,5 @@
 ﻿using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
 using Neon.Domain.Entities;
@@ -8,6 +9,7 @@ namespace Neon.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class OrderCompositionController(IOrderCompositionService orderCompositionService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("{orderCompositionId:int}", Name = nameof(GetOrderCompositionById))]

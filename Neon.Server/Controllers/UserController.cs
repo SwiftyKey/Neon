@@ -1,4 +1,5 @@
 ﻿using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
 using Neon.Application.ViewModels;
@@ -8,6 +9,7 @@ namespace Neon.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UserController(IUserService userService, IMapper mapper) : Controller
 {
 	[HttpGet("{userId:int}", Name = nameof(GetUserById))]
