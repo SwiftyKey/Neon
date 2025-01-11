@@ -19,6 +19,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 1,
 					Title = "1" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 1,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -27,6 +28,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 2,
 					Title = "1" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 1,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -35,6 +37,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 3,
 					Title = "1" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 1,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -43,6 +46,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 4,
 					Title = "1" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 1,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -51,6 +55,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 5,
 					Title = "2" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 2,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -59,6 +64,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 6,
 					Title = "2" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 2,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -67,6 +73,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 7,
 					Title = "2" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 2,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -75,6 +82,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 8,
 					Title = "2" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 2,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -83,6 +91,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 9,
 					Title = "3" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 3,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -91,6 +100,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 10,
 					Title = "3" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 3,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -99,6 +109,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 11,
 					Title = "3" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 3,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				},
@@ -107,6 +118,7 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 					Id = 12,
 					Title = "3" + DateTimeOffset.Now.Ticks.ToString(),
 					UserId = 3,
+					Bought = true,
 					CreatedAt = DateTimeOffset.Now,
 					UpdatedAt = DateTimeOffset.Now
 				}

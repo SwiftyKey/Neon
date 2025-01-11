@@ -60,6 +60,7 @@ public class ModelRegister : IRegister
 		.TwoWays()
 		.Map(dest => dest.Title, src => src.Title)
 		.Map(dest => dest.UserId, src => src.User.Id)
+		.Map(dest => dest.Bought, src => src.Bought)
 		.Map(dest => dest.Compositions, src => src.Compositions)
 		.Map(dest => dest.UpdatedAt, src => src.UpdatedAt)
 		.Map(dest => dest.CreatedAt, src => src.CreatedAt);
