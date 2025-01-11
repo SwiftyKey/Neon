@@ -18,7 +18,7 @@ public static class ServicesExtension
 		collection.AddScoped<IHistoryService, HistoryService>();
 		collection.AddScoped<IProductService, ProductService>();
 		collection.AddScoped<IUserService, UserService>();
-		collection.AddScoped<ISalesForecastingService, SalesForecastingService>();
+		collection.AddScoped<IForecastingService, ForecastingService>();
 		collection.AddScoped<IProductImageService>(x => new ProductImageService(productImagesPath));
 	}
 
@@ -32,6 +32,6 @@ public static class ServicesExtension
 		collection.AddScoped<IHistoryService, HistoryService>();
 		collection.AddScoped<IProductService, ProductService>();
 		collection.AddScoped<IUserService, UserService>();
-		collection.AddScoped<ISalesForecastingService, SalesForecastingService>();
+		collection.AddScoped<IForecastingService, ForecastingService>();
 	}
 }
