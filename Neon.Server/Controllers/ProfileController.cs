@@ -28,4 +28,16 @@ public class ProfileController(IOrderService orderService, IMapper mapper) : Con
 
 		return Ok(mapper.Map<OrderToGet>(cart));
 	}
+
+	[HttpPatch("cart/{userId:int}", Name = nameof(Payment))]
+	public async Task<IActionResult> Payment([FromRoute] int userId)
+	{
+		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
+		cart.Bought = true;
+
+		await orderService.UpdateAsync(cart);
+		await orderService.CreateCartByUserId(userId);
+
+		return Ok();
+	}
 }
