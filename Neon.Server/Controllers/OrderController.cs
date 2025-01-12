@@ -40,7 +40,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 	}
 
 	[HttpPost(Name = nameof(CreateOrder))]
-	[Authorize(Roles = "Admin, Client")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> CreateOrder([FromBody] OrderToPost orderToPost)
 	{
 		if (orderToPost is null)
@@ -53,7 +53,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 	}
 
 	[HttpPatch("{orderId:int}", Name = nameof(UpdateOrder))]
-	[Authorize(Roles = "Admin, Client")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> UpdateOrder(int orderId, [FromBody] OrderToPatch orderToPatch)
 	{
 		var order = mapper.Map<Order>(orderToPatch);
@@ -63,7 +63,7 @@ public class OrderController(IOrderService orderService, IMapper mapper) : Contr
 	}
 
 	[HttpDelete("{orderId:int}", Name = nameof(DeleteOrder))]
-	[Authorize(Roles = "Admin, Client")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> DeleteOrder(int orderId)
 	{
 		await orderService.DeleteAsync(orderService.GetById(orderId));
