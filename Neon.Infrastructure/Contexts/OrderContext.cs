@@ -9,8 +9,8 @@ public class OrderContext : IEntityTypeConfiguration<Order>
 	public void Configure(EntityTypeBuilder<Order> builder)
 	{
 		builder
-			.HasIndex(u => u.Title)
-			.IsUnique();
+			.HasIndex(u => u.Title);
+
 		builder
 			.HasData
 			(

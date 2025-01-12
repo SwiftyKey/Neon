@@ -65,6 +65,8 @@ public class UserService
 	{
 		user.Password = hasher.Hash(user.Password);
 		var u = await userRepository.Login(user);
+		if (u == null)
+			return string.Empty;
 		return jwtProvider.GenerateToken(u);
 	}
 }

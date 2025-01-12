@@ -16,9 +16,9 @@ builder.Services.AddDbContext<NeonDbContext>(options =>
 builder.Services.AddRepositories();
 builder.Services.RegisterMapster();
 builder.Services.AddServices();
-builder.Services.ConfigureIdentityService();
-builder.Services.ApiAuthentication(builder.Configuration);
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
+builder.Services.ApiAuthentication(builder.Configuration);
+builder.Services.ConfigureIdentityService();
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("ClientApp", policy =>
@@ -29,13 +29,13 @@ builder.Services.AddCors(options =>
 		policy.AllowCredentials();
 	});
 });
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -44,10 +44,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("ClientApp");
+
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseCors("ClientApp");
 
 app.MapControllers();
 

@@ -14,7 +14,13 @@ public class ProfileController(IOrderService orderService, IMapper mapper) : Con
 	[HttpGet("orders/{userId:int}", Name = nameof(GetUserOrders))]
 	public ActionResult<IEnumerable<OrderToGet>> GetUserOrders([FromRoute] int userId)
 	{
-		var orders = orderService.GetOrderByUserId(userId);
+		var orders = orderService.GetOrderByUserId(userId).Where(x => x.Bought);
 		return Ok(orders.Select(mapper.Map<OrderToGet>));
+	}
+	[HttpGet("cart/{userId:int}", Name = nameof(GetUserCart))]
+	public ActionResult<IEnumerable<OrderToGet>> GetUserCart([FromRoute] int userId)
+	{
+		var cart = orderService.GetOrderByUserId(userId).FirstOrDefault(x => !x.Bought);
+		return Ok(mapper.Map<OrderToGet>(cart));
 	}
 }

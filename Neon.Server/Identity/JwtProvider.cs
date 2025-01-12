@@ -15,21 +15,16 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
 	{
 		Claim[] userClaims = [new("user", user.Id.ToString())];
 
-		var signingCredentials = new SigningCredentials
-		(
-			new SymmetricSecurityKey
-			(
-				Encoding.UTF8.GetBytes(_options.SecretKey)
-			),
+		var signingCredentials = new SigningCredentials(
+			new SymmetricSecurityKey(
+				Encoding.UTF8.GetBytes(_options.SecretKey)),
 			SecurityAlgorithms.HmacSha256);
 
-		var token = new JwtSecurityToken
-		(
+		var token = new JwtSecurityToken(
 			claims: userClaims,
 			signingCredentials: signingCredentials,
-			expires: DateTime.Now.AddHours(_options.ExpiersHours)
+			expires: DateTime.Now.AddHours(_options.ExpiresHours)
 		);
-
 		var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
 		return tokenValue;

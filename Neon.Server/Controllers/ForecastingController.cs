@@ -8,11 +8,11 @@ namespace Neon.Server.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class ForecastingController(IForecastingService salesForecastingService) : ControllerBase
+public class ForecastingController(IForecastingService forecastingService) : ControllerBase
 {
 	[HttpGet(Name = nameof(GetForecast))]
 	public ActionResult<UserToGet> GetForecast()
 	{
-		return Ok(salesForecastingService.Forecast());
+		return Ok(forecastingService.Forecast());
 	}
 }

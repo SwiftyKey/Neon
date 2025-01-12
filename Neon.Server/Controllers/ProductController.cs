@@ -9,7 +9,6 @@ namespace Neon.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class ProductController(IProductService productService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("{productId:int}", Name = nameof(GetProductById))]

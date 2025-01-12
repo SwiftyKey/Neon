@@ -15,6 +15,7 @@ public class AuthController(IUserService userService, IMapper mapper) : Controll
 	public async Task<ActionResult<Token>> Login([FromBody] UserToAuthorize user)
 	{
 		var token = new Token { AccessToken = await userService.Login(mapper.Map<UserVm>(user)) };
+		HttpContext.Response.Cookies.Append("access_token", token.AccessToken);
 		return Ok(token);
 	}
 
