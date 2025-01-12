@@ -33,4 +33,10 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 		.Include(c => c.Products)
 		.Include(c => c.Compositions)
 		.Where(u => u.UserId == userId)];
+
+	public async Task<Order> CreateCartByUserId(int userId)
+	{
+		var order = new Order { Title = $"{userId}{DateTimeOffset.Now.Ticks}", UserId = userId };
+		return await AddAsync(order);
+	}
 }

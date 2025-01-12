@@ -8,4 +8,5 @@ public interface IOrderRepository: IBaseRepository<Order>
 	Order? GetByTitle(string title);
 	Order GetById(int id);
 	IEnumerable<Order> GetOrderByUserId(int userId);
+	Task<Order> CreateCartByUserId(int userId);
 }

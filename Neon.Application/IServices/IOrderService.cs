@@ -11,4 +11,5 @@ public interface IOrderService
 	Order GetById(int id);
 	Order? GetByTitle(string title);
 	IEnumerable<Order> GetOrderByUserId(int userId);
+	Task<Order> CreateCartByUserId(int userId);
 }

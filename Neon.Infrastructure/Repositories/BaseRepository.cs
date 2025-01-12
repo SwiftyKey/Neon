@@ -12,6 +12,7 @@ public abstract class BaseRepository<TEntity>(NeonDbContext context) : IBaseRepo
 	public async Task<TEntity> AddAsync(TEntity entity)
 	{
 		entity.CreatedAt = DateTimeOffset.UtcNow;
+		entity.UpdatedAt = DateTimeOffset.UtcNow;
 		return (await set.AddAsync(entity)).Entity;
 	}
 

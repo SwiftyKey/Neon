@@ -57,7 +57,7 @@ public class ModelRegister : IRegister
 		config.NewConfig<Order, OrderToGet>()
 		.TwoWays()
 		.Map(dest => dest.Title, src => src.Title)
-		.Map(dest => dest.UserId, src => src.User.Id)
+		.Map(dest => dest.UserId, src => src.UserId)
 		.Map(dest => dest.Bought, src => src.Bought)
 		.Map(dest => dest.Compositions, src => src.Compositions)
 		.Map(dest => dest.UpdatedAt, src => src.UpdatedAt)

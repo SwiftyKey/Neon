@@ -47,4 +47,11 @@ public class OrderService
 	{
 		return OrderRepository.GetOrderByUserId(userId);
 	}
+
+	public async Task<Order> CreateCartByUserId(int userId)
+	{
+		var cart = await OrderRepository.CreateCartByUserId(userId);
+		await OrderRepository.SaveChangesAsync();
+		return cart;
+	}
 }
