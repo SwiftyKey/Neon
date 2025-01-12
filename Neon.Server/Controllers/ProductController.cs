@@ -40,6 +40,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 	}
 
 	[HttpPost(Name = nameof(CreateProduct))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> CreateProduct([FromBody] ProductToPost productToPost)
 	{
 		if (productToPost is null)
@@ -52,6 +53,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 	}
 
 	[HttpPatch("{productId:int}", Name = nameof(UpdateProduct))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> UpdateProduct(int productId, [FromBody] ProductToPatch productToPatch)
 	{
 		var product = mapper.Map<Product>(productToPatch);
@@ -61,6 +63,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 	}
 
 	[HttpDelete("{productId:int}", Name = nameof(DeleteProduct))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> DeleteProduct(int productId)
 	{
 		await productService.DeleteAsync(productService.GetById(productId));

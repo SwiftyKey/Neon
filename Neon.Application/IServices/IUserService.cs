@@ -11,6 +11,6 @@ public interface IUserService
 	IEnumerable<User> GetAll();
 	User GetById(int id);
 	User? GetByName(string name);
-	Task ChangeRigths(bool rigths, int id);
+	Task ChangeRights(bool rigths, int id);
 	Task<string> Login(UserVm user);
 }

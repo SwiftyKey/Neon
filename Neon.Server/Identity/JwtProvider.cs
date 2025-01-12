@@ -13,7 +13,7 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
 	private readonly JwtOptions _options = options.Value;
 	public string GenerateToken(User user)
 	{
-		Claim[] userClaims = [new("user", user.Id.ToString())];
+		Claim[] userClaims = [new("user", user.Id.ToString()), new(ClaimsIdentity.DefaultRoleClaimType, user.IsAdmin ? "Admin" : "Client")];
 
 		var signingCredentials = new SigningCredentials(
 			new SymmetricSecurityKey(

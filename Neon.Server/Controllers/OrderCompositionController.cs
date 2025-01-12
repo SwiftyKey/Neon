@@ -37,6 +37,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpPost(Name = nameof(CreateOrderComposition))]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> CreateOrderComposition([FromBody] OrderCompositionToPost orderCompositionToPost)
 	{
 		if (orderCompositionToPost is null)
@@ -49,6 +50,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpPatch("{orderCompositionId:int}", Name = nameof(UpdateOrderComposition))]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> UpdateOrderComposition(int orderCompositionId, [FromBody] OrderCompostionToPatch orderCompositionToPatch)
 	{
 		var orderComposition = mapper.Map<OrderComposition>(orderCompositionToPatch);
@@ -58,6 +60,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpDelete("{orderCompositionId:int}", Name = nameof(DeleteOrderComposition))]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> DeleteOrderComposition(int orderCompositionId)
 	{
 		await orderCompositionService.DeleteAsync(orderCompositionService.GetById(orderCompositionId));

@@ -40,6 +40,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 	}
 
 	[HttpPost(Name = nameof(CreateCategory))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> CreateCategory([FromBody] CategoryToPost categoryToPost)
 	{
 		if (categoryToPost is null)
@@ -52,6 +53,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 	}
 
 	[HttpPatch("{categoryid:int}", Name = nameof(UpdateCategory))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> UpdateCategory(int categoryid, [FromBody] CategoryToPatch categoryToPatch)
 	{
 		var category = mapper.Map<Category>(categoryToPatch);
@@ -61,6 +63,7 @@ public class CategoryController(ICategoryService categoryService, IMapper mapper
 	}
 
 	[HttpDelete("{categoryid:int}", Name = nameof(DeleteCategory))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> DeleteCategory(int categoryid)
 	{
 		await categoryService.DeleteAsync(categoryService.GetById(categoryid));

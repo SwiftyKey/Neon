@@ -55,7 +55,7 @@ public class UserService
 		await userRepository.SaveChangesAsync();
 	}
 
-	public async Task ChangeRigths(bool rigths, int id)
+	public async Task ChangeRights(bool rigths, int id)
 	{
 		userRepository.ChangeRights(rigths, id);
 		await userRepository.SaveChangesAsync();

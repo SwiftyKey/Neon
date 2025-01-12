@@ -11,6 +11,7 @@ namespace Neon.Server.Controllers;
 public class ForecastingController(IForecastingService forecastingService) : ControllerBase
 {
 	[HttpGet(Name = nameof(GetForecast))]
+	[Authorize(Policy = "AdminPolicy")]
 	public ActionResult<UserToGet> GetForecast()
 	{
 		return Ok(forecastingService.Forecast());

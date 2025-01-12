@@ -52,6 +52,7 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 	}
 
 	[HttpPatch("{userId:int}", Name = nameof(UpdateUser))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> UpdateUser(int userId, [FromBody] UserToPatch userToPatch)
 	{
 		var user = mapper.Map<UserVm>(userToPatch);
@@ -61,9 +62,18 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 	}
 
 	[HttpDelete("{userId:int}", Name = nameof(DeleteUser))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> DeleteUser(int userId)
 	{
 		await userService.DeleteAsync(new UserVm { Id = userId });
+		return Ok();
+	}
+
+	[HttpPost("ChangeRights")]
+	[Authorize(Policy = "AdminPolicy")]
+	public async Task<IActionResult> ChangeRights([FromQuery] UserChangeRights userChangeRights)
+	{
+		await userService.ChangeRights(userChangeRights.IsAdmin, userChangeRights.UserId);
 		return Ok();
 	}
 }

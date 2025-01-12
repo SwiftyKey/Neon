@@ -11,7 +11,7 @@ public class ManufacturerContext : IEntityTypeConfiguration<Manufacturer>
 		builder
 			.HasMany(o => o.Products)
 			.WithOne(c => c.Manufacturer)
-			.OnDelete(DeleteBehavior.ClientCascade);
+			.OnDelete(DeleteBehavior.Cascade);
 
 		builder
 			.HasIndex(u => u.Name)

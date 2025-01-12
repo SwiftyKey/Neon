@@ -40,6 +40,7 @@ public class ManufacturerController(IManufacturerService manufacturerService, IM
 	}
 
 	[HttpPost(Name = nameof(CreateManufacturer))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> CreateManufacturer([FromBody] ManufacturerToPost manufacturerToPost)
 	{
 		if (manufacturerToPost is null)
@@ -52,6 +53,7 @@ public class ManufacturerController(IManufacturerService manufacturerService, IM
 	}
 
 	[HttpPatch("{manufacturerId:int}", Name = nameof(UpdateManufacturer))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> UpdateManufacturer(int manufacturerId, [FromBody] ManufacturerToPatch manufacturerToPatch)
 	{
 		var manufacturer = mapper.Map<Manufacturer>(manufacturerToPatch);
@@ -61,6 +63,7 @@ public class ManufacturerController(IManufacturerService manufacturerService, IM
 	}
 
 	[HttpDelete("{manufacturerId:int}", Name = nameof(DeleteManufacturer))]
+	[Authorize(Policy = "AdminPolicy")]
 	public async Task<IActionResult> DeleteManufacturer(int manufacturerId)
 	{
 		await manufacturerService.DeleteAsync(manufacturerService.GetById(manufacturerId));

@@ -32,6 +32,7 @@ public static class AuthExtension
 				};
 			});
 
-		services.AddAuthorization();
+		services.AddAuthorizationBuilder()
+			.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
 	}
 }

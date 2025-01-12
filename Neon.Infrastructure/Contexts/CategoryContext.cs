@@ -11,7 +11,7 @@ public class CategoryContext : IEntityTypeConfiguration<Category>
 		builder
 			.HasMany(o => o.Products)
 			.WithOne(c => c.Category)
-			.OnDelete(DeleteBehavior.ClientCascade);
+			.OnDelete(DeleteBehavior.Cascade);
 
 		builder
 			.HasIndex(u => u.Title)

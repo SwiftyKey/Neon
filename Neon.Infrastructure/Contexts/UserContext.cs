@@ -11,7 +11,7 @@ public class UserContext : IEntityTypeConfiguration<User>
 		builder
 			.HasMany(u => u.Orders)
 			.WithOne(o => o.User)
-			.OnDelete(DeleteBehavior.ClientCascade);
+			.OnDelete(DeleteBehavior.Cascade);
 
 		builder
 			.HasIndex(u => u.Name)

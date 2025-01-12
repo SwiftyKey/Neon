@@ -12,6 +12,7 @@ namespace Neon.Server.Controllers;
 public class ProfileController(IOrderService orderService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("orders/{userId:int}", Name = nameof(GetUserOrders))]
+	[Authorize(Roles = "Admin, Client")]
 	public ActionResult<IEnumerable<OrderToGet>> GetUserOrders([FromRoute] int userId)
 	{
 		var orders = orderService.GetOrderByUserId(userId).Where(x => x.Bought);
@@ -19,6 +20,7 @@ public class ProfileController(IOrderService orderService, IMapper mapper) : Con
 	}
 
 	[HttpGet("cart/{userId:int}", Name = nameof(GetUserCart))]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<ActionResult<IEnumerable<OrderToGet>>> GetUserCart([FromRoute] int userId)
 	{
 		var cart = orderService.GetOrderByUserId(userId).FirstOrDefault(x => !x.Bought);
