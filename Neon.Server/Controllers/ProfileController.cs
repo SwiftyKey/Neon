@@ -30,6 +30,7 @@ public class ProfileController(IOrderService orderService, IMapper mapper) : Con
 	}
 
 	[HttpPatch("cart/{userId:int}", Name = nameof(Payment))]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> Payment([FromRoute] int userId)
 	{
 		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
