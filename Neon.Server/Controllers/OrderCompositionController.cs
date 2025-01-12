@@ -37,7 +37,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 	}
 
 	[HttpPost(Name = nameof(CreateOrderComposition))]
-	[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> CreateOrderComposition([FromBody] OrderCompositionToPost orderCompositionToPost)
 	{
 		if (orderCompositionToPost is null)

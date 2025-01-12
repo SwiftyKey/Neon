@@ -69,4 +69,12 @@ public class ProductController(IProductService productService, IMapper mapper) :
 		await productService.DeleteAsync(productService.GetById(productId));
 		return Ok();
 	}
+
+	[HttpGet("/filter/{title}")]
+	public ActionResult<IEnumerable<ProductToGet>> GetFilteredProducts(string title)
+	{
+		var products = productService.GetAll().Where(x => x.Category.Title == title).ToList();
+		var productsToGet = products.Select(mapper.Map<ProductToGet>);
+		return Ok(productsToGet);
+	}
 }
