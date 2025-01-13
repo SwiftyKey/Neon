@@ -8,8 +8,7 @@ using Neon.Server.RequestEntities.Category;
 namespace Neon.Server.Controllers;
 
 [Route("api/[controller]")]
-[ApiController]
-[Authorize]
+[ApiController] 
 public class CategoryController(ICategoryService categoryService, IMapper mapper) : ControllerBase
 {
 	[HttpGet("{categoryid:int}", Name = nameof(GetCategoryById))]
