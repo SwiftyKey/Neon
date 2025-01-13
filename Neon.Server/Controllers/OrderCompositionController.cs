@@ -46,6 +46,7 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 			return UnprocessableEntity();
 
 		var orderComposition = mapper.Map<OrderComposition>(orderCompositionToPost);
+		orderComposition.Count = Math.Min(Math.Max(orderComposition.Count, 1), orderComposition.Product.Count);
 		var createdOrderComposition = orderComposition;
 
 		if (!orderCompositionService

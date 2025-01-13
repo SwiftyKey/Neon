@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
+using Neon.Domain.Entities;
 using Neon.Server.RequestEntities.Order;
 using Neon.Server.RequestEntities.OrderComposition;
 
@@ -50,7 +51,7 @@ public class ProfileController(IOrderService orderService, IOrderCompositionServ
 		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
 
 		var composition = cart.Compositions.First(x => x.ProductId == orderCompositionToChange.ProductId);
-		composition.Count = orderCompositionToChange.Count;
+		composition.Count = Math.Min(Math.Max(orderCompositionToChange.Count, 1), composition.Product.Count);
 		await orderCompositionService.UpdateAsync(composition);
 
 		return Ok();
