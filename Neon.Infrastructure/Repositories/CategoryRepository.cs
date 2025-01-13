@@ -12,8 +12,7 @@ public class CategoryRepository: BaseRepository<Category>, ICategoryRepository
 	}
 
 	public override IEnumerable<Category> GetAll() => [.. set
-		.Include(c => c.Products)
-		.ThenInclude(p => p.Category)];
+		.Include(c => c.Products)];
 
 	public Category GetById(int id) => set
 		.Include(c => c.Products)

@@ -21,7 +21,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
 		return Ok(productToGet);
 	}
 
-	[HttpGet("{name}", Name = nameof(GetProductByName))]
+	[HttpGet("/api/Product/search/{name}", Name = nameof(GetProductByName))]
 	public ActionResult<IEnumerable<ProductToGet>> GetProductByName([FromRoute] string name)
 	{
 		var products = productService.GetByName(name);

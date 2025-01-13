@@ -44,8 +44,15 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 			return BadRequest("OrderComposition is empty");
 		if (!ModelState.IsValid)
 			return UnprocessableEntity();
+
 		var orderComposition = mapper.Map<OrderComposition>(orderCompositionToPost);
-		var createdOrderComposition = await orderCompositionService.AddAsync(orderComposition);
+		var createdOrderComposition = orderComposition;
+
+		if (!orderCompositionService
+			.GetCompositionsByOrderId(orderComposition.OrderId)
+			.Any(x => x.ProductId == orderComposition.ProductId))
+			createdOrderComposition = await orderCompositionService.AddAsync(orderComposition);
+
 		return CreatedAtRoute(nameof(GetOrderCompositionById), new { orderCompositionId = createdOrderComposition.Id }, createdOrderComposition.Id);
 	}
 
