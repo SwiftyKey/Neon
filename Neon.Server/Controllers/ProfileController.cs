@@ -67,4 +67,12 @@ public class ProfileController(IOrderService orderService, IOrderCompositionServ
 
 		return Ok();
 	}
+
+	[HttpGet("/cart/totalPrice/{userId:int}")]
+	public ActionResult<double> GetTotalPrice(int userId)
+	{
+		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
+		var sum = cart.Compositions.Sum(x => x.Product.Cost * x.Count);
+		return Ok(sum);
+	}
 }
