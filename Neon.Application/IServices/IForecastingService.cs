@@ -1,6 +1,8 @@
-﻿namespace Neon.Application.IServices;
+﻿using Neon.Domain.Entities;
+
+namespace Neon.Application.IServices;
 
 public interface IForecastingService
 {
-	List<int> Forecast();
+	IEnumerable<Visit> Forecast();
 }

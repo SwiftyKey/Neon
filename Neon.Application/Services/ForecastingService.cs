@@ -1,19 +1,22 @@
 ﻿using Neon.Application.IRepositories;
 using Neon.Application.IServices;
+using Neon.Domain.Entities;
 
 namespace Neon.Application.Services;
 
 public class ForecastingService(IVisitRepository visitRepository): IForecastingService
 {
-	private static int GetM(List<int> values) => values.Sum(x => x) / values.Count;
+	private static int GetM(List<int> values) => values.Sum(x => x);
 
-	public List<int> Forecast()
+	public IEnumerable<Visit> Forecast()
 	{
-		var data = visitRepository.GetAll().Select(v => v.Count).ToList();
+		var data = visitRepository.GetAll();
 
-		var predict = GetM(data.TakeLast(3).ToList()) + (data[^1] - data[^2]) / 3;
+		var left = GetM(data.Select(x => x.Count).TakeLast(3).ToList());
+		var right = (data.Select(x => x.Count).ToList()[^1] - data.Select(x => x.Count).ToList()[^2]);
+		var predict =  (left + right) / 3;
 
-		data.Add(predict);
+		data = data.Append(new Visit { Count = predict, Month = "Декабрь"});
 
 		return data;
 	}
