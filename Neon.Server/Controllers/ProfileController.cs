@@ -69,6 +69,7 @@ public class ProfileController(IOrderService orderService, IOrderCompositionServ
 	}
 
 	[HttpGet("/cart/totalPrice/{userId:int}")]
+	[Authorize(Roles = "Admin, Client")]
 	public ActionResult<double> GetTotalPrice(int userId)
 	{
 		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
