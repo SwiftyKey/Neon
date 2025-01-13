@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
-using Neon.Server.RequestEntities.User;
+using Neon.Server.RequestEntities;
 
 namespace Neon.Server.Controllers;
 
@@ -12,7 +12,7 @@ public class ForecastingController(IForecastingService forecastingService) : Con
 {
 	[HttpGet(Name = nameof(GetForecast))]
 	[Authorize(Policy = "AdminPolicy")]
-	public ActionResult<UserToGet> GetForecast()
+	public ActionResult<ForecastToGet> GetForecast()
 	{
 		return Ok(forecastingService.Forecast());
 	}
