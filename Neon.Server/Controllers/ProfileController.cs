@@ -11,7 +11,12 @@ namespace Neon.Server.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class ProfileController(IOrderService orderService, IOrderCompositionService orderCompositionService, IMapper mapper) : ControllerBase
+public class ProfileController
+(
+	IOrderService orderService,
+	IOrderCompositionService orderCompositionService,
+	IProductService productService,
+	IMapper mapper) : ControllerBase
 {
 	[HttpGet("orders/{userId:int}", Name = nameof(GetUserOrders))]
 	[Authorize(Roles = "Admin, Client")]
@@ -41,6 +46,13 @@ public class ProfileController(IOrderService orderService, IOrderCompositionServ
 		await orderService.UpdateAsync(cart);
 		await orderService.CreateCartByUserId(userId);
 
+		foreach (var item in cart.Compositions)
+		{
+			var product = productService.GetById(item.ProductId);
+			product.Count -= item.Count;
+			await productService.UpdateAsync(product);
+		}
+
 		return Ok();
 	}
 
@@ -51,7 +63,8 @@ public class ProfileController(IOrderService orderService, IOrderCompositionServ
 		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
 
 		var composition = cart.Compositions.First(x => x.ProductId == orderCompositionToChange.ProductId);
-		composition.Count = Math.Min(Math.Max(orderCompositionToChange.Count, 1), composition.Product.Count);
+		var product = productService.GetById(composition.ProductId);
+		composition.Count = Math.Min(Math.Max(orderCompositionToChange.Count, 1), product.Count);
 		await orderCompositionService.UpdateAsync(composition);
 
 		return Ok();

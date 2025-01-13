@@ -10,7 +10,11 @@ namespace Neon.Server.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class OrderCompositionController(IOrderCompositionService orderCompositionService, IMapper mapper) : ControllerBase
+public class OrderCompositionController
+(
+IOrderCompositionService orderCompositionService, 
+IProductService productService,
+IMapper mapper) : ControllerBase
 {
 	[HttpGet("{orderCompositionId:int}", Name = nameof(GetOrderCompositionById))]
 	public ActionResult<OrderCompositionToGet> GetOrderCompositionById([FromRoute] int orderCompositionId)
@@ -46,7 +50,8 @@ public class OrderCompositionController(IOrderCompositionService orderCompositio
 			return UnprocessableEntity();
 
 		var orderComposition = mapper.Map<OrderComposition>(orderCompositionToPost);
-		orderComposition.Count = Math.Min(Math.Max(orderComposition.Count, 1), orderComposition.Product.Count);
+		var product = productService.GetById(orderComposition.ProductId);
+		orderComposition.Count = Math.Min(Math.Max(orderComposition.Count, 1), product.Count);
 		var createdOrderComposition = orderComposition;
 
 		if (!orderCompositionService
