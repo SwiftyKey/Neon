@@ -14,6 +14,5 @@ public static class RepositoriesExtension
 		collection.AddScoped<IOrderCompositionRepository, OrderCompositionRepository>();
 		collection.AddScoped<IProductRepository, ProductRepository>();
 		collection.AddScoped<IUserRepository, UserRepository>();
-		collection.AddScoped<IVisitRepository, VisitRepository>();
 	}
 }

@@ -26,8 +26,15 @@ public class AuthController(IUserService userService, IMapper mapper) : Controll
 			return BadRequest("User is empty");
 		if (!ModelState.IsValid)
 			return UnprocessableEntity();
-		var user = mapper.Map<UserVm>(userToAuthorize);
-		await userService.AddAsync(user);
-		return Ok();
+		try
+		{
+			var user = mapper.Map<UserVm>(userToAuthorize);
+			await userService.AddAsync(user);
+			return Ok();
+		}
+		catch (Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
 	}
 }

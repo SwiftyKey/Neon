@@ -1,10 +1,11 @@
-﻿using Neon.Application.Base;
+﻿using MapsterMapper;
+using Neon.Application.Base;
+using Neon.Application.Contracts;
 using Neon.Application.IRepositories;
 using Neon.Application.IServices;
+using Neon.Application.Validation;
 using Neon.Application.ViewModels;
 using Neon.Domain.Entities;
-using MapsterMapper;
-using Neon.Application.Contracts;
 
 namespace Neon.Application.Services;
 
@@ -13,11 +14,14 @@ public class UserService
 	IMapper mapper,
 	IUserRepository userRepository,
 	IHasher hasher,
-	IJwtProvider jwtProvider
+	IJwtProvider jwtProvider,
+	UserValidationPipeline userValidationPipeline
 ) : IUserService
 {
 	public async Task<UserVm> AddAsync(UserVm model)
 	{
+		await userValidationPipeline.HandleAsync(model);
+		
 		var user = mapper.Map<User>(model);
 		user.HashPassword = hasher.Hash(model.Password);
 		user = await userRepository.AddAsync(user);
@@ -48,6 +52,8 @@ public class UserService
 
 	public async Task UpdateAsync(UserVm model)
 	{
+		await userValidationPipeline.HandleAsync(model);
+
 		var entity = userRepository.GetById(model.Id);
 		var updatedEntity = mapper.Map(model, entity);
 

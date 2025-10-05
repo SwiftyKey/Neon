@@ -46,23 +46,39 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 			return BadRequest("User is empty");
 		if (!ModelState.IsValid)
 			return UnprocessableEntity();
+
 		var user = mapper.Map<UserVm>(userToPost);
-		var createdUser = await userService.AddAsync(user);
-		return CreatedAtRoute(nameof(GetUserById), new { userId = createdUser.Id }, createdUser.Id);
+
+		try
+		{
+			var createdUser = await userService.AddAsync(user);
+			return CreatedAtRoute(nameof(GetUserById), new { userId = createdUser.Id }, createdUser.Id);
+		} catch (Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
 	}
 
 	[HttpPatch("{userId:int}", Name = nameof(UpdateUser))]
-	[Authorize(Policy = "AdminPolicy")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> UpdateUser(int userId, [FromBody] UserToPatch userToPatch)
 	{
 		var user = mapper.Map<UserVm>(userToPatch);
-		user.Id = userId;
-		await userService.UpdateAsync(user);
-		return Ok();
+
+		try
+		{
+			user.Id = userId;
+			await userService.UpdateAsync(user);
+			return Ok();
+		}
+		catch (Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
 	}
 
 	[HttpDelete("{userId:int}", Name = nameof(DeleteUser))]
-	[Authorize(Policy = "AdminPolicy")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> DeleteUser(int userId)
 	{
 		await userService.DeleteAsync(new UserVm { Id = userId });
@@ -70,7 +86,7 @@ public class UserController(IUserService userService, IMapper mapper) : Controll
 	}
 
 	[HttpPost("ChangeRights")]
-	[Authorize(Policy = "AdminPolicy")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> ChangeRights([FromQuery] UserChangeRights userChangeRights)
 	{
 		await userService.ChangeRights(userChangeRights.IsAdmin, userChangeRights.UserId);

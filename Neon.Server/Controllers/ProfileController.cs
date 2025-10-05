@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neon.Application.IServices;
-using Neon.Domain.Entities;
 using Neon.Server.RequestEntities.Order;
 using Neon.Server.RequestEntities.OrderComposition;
 
@@ -16,6 +15,7 @@ public class ProfileController
 	IOrderService orderService,
 	IOrderCompositionService orderCompositionService,
 	IProductService productService,
+	IPaymentService paymentService,
 	IMapper mapper) : ControllerBase
 {
 	[HttpGet("orders/{userId:int}", Name = nameof(GetUserOrders))]
@@ -40,19 +40,7 @@ public class ProfileController
 	[Authorize(Roles = "Admin, Client")]
 	public async Task<IActionResult> Payment([FromRoute] int userId)
 	{
-		var cart = orderService.GetOrderByUserId(userId).First(x => !x.Bought);
-		cart.Bought = true;
-
-		await orderService.UpdateAsync(cart);
-		await orderService.CreateCartByUserId(userId);
-
-		foreach (var item in cart.Compositions)
-		{
-			var product = productService.GetById(item.ProductId);
-			product.Count -= item.Count;
-			await productService.UpdateAsync(product);
-		}
-
+		await paymentService.PayAsync(userId);
 		return Ok();
 	}
 

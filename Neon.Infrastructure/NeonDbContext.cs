@@ -11,7 +11,6 @@ public class NeonDbContext : DbContext
 	public DbSet<Manufacturer> Manufacturers { get; set; }
 	public DbSet<Category> Categories { get; set; }
 	public DbSet<OrderComposition> OrderCompositions { get; set; }
-	public DbSet<Visit> Visits { get; set; }
 
 	public NeonDbContext(DbContextOptions<NeonDbContext> contextOptions) : base(contextOptions)
 	{
